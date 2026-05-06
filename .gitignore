@@ -1,2 +1,4 @@
 /target/
 /.vscode/
+
+inventory_db.sql
