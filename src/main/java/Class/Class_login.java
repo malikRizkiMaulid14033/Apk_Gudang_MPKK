@@ -1,4 +1,4 @@
-package com.mycompany.projek_pakdev;
+package Class;
 
 import server.Koneksi;
 import java.sql.PreparedStatement;
