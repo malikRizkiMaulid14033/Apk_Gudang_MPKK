@@ -11,7 +11,7 @@ public class Koneksi {
 
     public Koneksi() {
         try {
-            String url = "jdbc:mysql://localhost:3306/db_gudang";
+            String url = "jdbc:mysql://localhost:3306/inventory_db";
             String user = "root";
             String pass = "";
 
