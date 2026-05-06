@@ -15,7 +15,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
-        <exec.mainClass>main.Login</exec.mainClass>
+        <exec.mainClass>main.Pakdev.java</exec.mainClass>
     </properties>
 
     <dependencies>
