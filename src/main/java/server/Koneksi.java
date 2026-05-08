@@ -24,7 +24,7 @@ public class Koneksi {
         }
     }
 
-    public void createStatement() throws SQLException {
+    public void createStatement() throws SQLException { 
         statement = conn.createStatement();
     }
 }

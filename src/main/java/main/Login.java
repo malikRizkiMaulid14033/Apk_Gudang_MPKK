@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
     /**
-     * Creates new form loginyak
+     * Creates new form 
      */
     public Login() {
         initComponents();
@@ -79,6 +79,11 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setText("PASSWORD");
 
         txtUsername.setText("Enter Your Username");
+        txtUsername.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtUsernameMouseClicked(evt);
+            }
+        });
         txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsernameActionPerformed(evt);
@@ -89,6 +94,11 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setText("USERNAME");
 
         txtPassword.setText("jPasswordField1");
+        txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPasswordMouseClicked(evt);
+            }
+        });
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswordActionPerformed(evt);
@@ -212,6 +222,14 @@ public class Login extends javax.swing.JFrame {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void txtUsernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsernameMouseClicked
+        txtUsername.setText("");
+    }//GEN-LAST:event_txtUsernameMouseClicked
+
+    private void txtPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswordMouseClicked
+        txtPassword.setText("");
+    }//GEN-LAST:event_txtPasswordMouseClicked
 
     /**
      * @param args the command line arguments
