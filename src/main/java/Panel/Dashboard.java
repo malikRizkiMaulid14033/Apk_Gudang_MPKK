@@ -8,12 +8,12 @@ package Panel;
  *
  * @author HP
  */
-public class Dashboard extends javax.swing.JPanel {
+public class dashboard extends javax.swing.JPanel {
 
     /**
      * Creates new form Dashboard
      */
-    public Dashboard() {
+    public dashboard() {
         initComponents();
     }
 
