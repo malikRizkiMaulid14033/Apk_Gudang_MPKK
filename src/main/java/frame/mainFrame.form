@@ -38,12 +38,12 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Component id="panelSidebar" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="panelHeader" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="panelContent" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="panelSidebar" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -60,12 +60,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="158" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="173" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="705" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -139,7 +139,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="528" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
