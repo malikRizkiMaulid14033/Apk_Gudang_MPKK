@@ -15,7 +15,7 @@ public class sidebarPanel extends javax.swing.JPanel {
     /**
      * Creates new form sideBar
      */
-    public sidebarPanel() {
+    public sidebarPanel(mainFrame main) {
         initComponents();
         this.main = main;
     }
@@ -54,6 +54,11 @@ public class sidebarPanel extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel4.setText("DASHBOARD");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/meta-logo-24 (1).png"))); // NOI18N
 
@@ -98,6 +103,11 @@ public class sidebarPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        main.showPage("dashboard", "DASHBOARD");
+    }//GEN-LAST:event_jLabel4MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -105,6 +115,5 @@ public class sidebarPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
