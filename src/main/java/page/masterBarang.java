@@ -8,12 +8,12 @@ package Panel;
  *
  * @author HP
  */
-public class dashboard extends javax.swing.JPanel {
+public class masterBarang extends javax.swing.JPanel {
 
     /**
-     * Creates new form Dashboard
+     * Creates new form masterBarang
      */
-    public dashboard() {
+    public masterBarang() {
         initComponents();
     }
 
@@ -28,31 +28,28 @@ public class dashboard extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Dashboard");
+        jLabel1.setText("master");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(294, 294, 294)
+                .addGap(161, 161, 161)
                 .addComponent(jLabel1)
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(92, 92, 92)
                 .addComponent(jLabel1)
-                .addContainerGap(506, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel panelContent;
-    private javax.swing.JPanel panelContent1;
     // End of variables declaration//GEN-END:variables
 }

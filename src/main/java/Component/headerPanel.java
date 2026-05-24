@@ -17,7 +17,7 @@ public class headerPanel extends javax.swing.JPanel {
         initComponents();
     }
     
-    public void setTittle(String title){
+    public void setTitle(String title){
         lblLocation.setText(title);
     }
 
@@ -55,7 +55,7 @@ public class headerPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(732, 113));
 
         lblLocation.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblLocation.setText("LOCATION");
+        lblLocation.setText("DASHBOARD");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("ADMIN");
@@ -67,7 +67,7 @@ public class headerPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(lblLocation)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 552, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 530, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(27, 27, 27))
         );
