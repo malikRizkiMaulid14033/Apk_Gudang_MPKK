@@ -71,7 +71,7 @@
               <Component id="panelOpname" min="-2" pref="40" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="panelLaporan" min="-2" pref="40" max="-2" attributes="0"/>
-              <EmptySpace pref="155" max="32767" attributes="0"/>
+              <EmptySpace pref="254" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -87,6 +87,9 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="APLIKASI "/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Text Cursor"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -99,6 +102,9 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="GUDANG"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Text Cursor"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -113,6 +119,9 @@
           <Color blue="99" green="4d" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="AG"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Text Cursor"/>
+        </Property>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="panelMasterBarang">
@@ -124,11 +133,10 @@
           <Color blue="69" green="55" red="47" type="rgb"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Hand Cursor"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="hierarchyChanged" listener="java.awt.event.HierarchyListener" parameters="java.awt.event.HierarchyEvent" handler="panelMasterBarangHierarchyChanged"/>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelMasterBarangMousePressed"/>
       </Events>
 
@@ -139,7 +147,7 @@
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/meta-logo-24 (1).png"/>
+              <Image iconType="3" name="/images/add.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -175,7 +183,7 @@
           <Color blue="69" green="55" red="47" type="rgb"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Hand Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -189,7 +197,7 @@
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/meta-logo-24 (1).png"/>
+              <Image iconType="3" name="/images/add.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -229,11 +237,10 @@
           <Color blue="69" green="55" red="47" type="rgb"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Hand Cursor"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="hierarchyChanged" listener="java.awt.event.HierarchyListener" parameters="java.awt.event.HierarchyEvent" handler="panelDashboardHierarchyChanged"/>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelDashboardMousePressed"/>
       </Events>
 
@@ -244,7 +251,7 @@
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/meta-logo-24 (1).png"/>
+              <Image iconType="3" name="/images/add.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -280,7 +287,7 @@
           <Color blue="69" green="55" red="47" type="rgb"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Hand Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -294,7 +301,7 @@
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/meta-logo-24 (1).png"/>
+              <Image iconType="3" name="/images/add.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -334,7 +341,7 @@
           <Color blue="69" green="55" red="47" type="rgb"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Hand Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -348,7 +355,7 @@
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/meta-logo-24 (1).png"/>
+              <Image iconType="3" name="/images/add.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -388,7 +395,7 @@
           <Color blue="69" green="55" red="47" type="rgb"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Hand Cursor"/>
         </Property>
       </Properties>
       <Events>
@@ -402,7 +409,7 @@
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/meta-logo-24 (1).png"/>
+              <Image iconType="3" name="/images/add.png"/>
             </Property>
           </Properties>
           <Constraints>

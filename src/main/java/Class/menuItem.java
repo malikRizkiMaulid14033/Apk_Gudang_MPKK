@@ -19,28 +19,56 @@ public class menuItem {
     private final Color defaultForeground = Color.decode("#475569");
     private final Color activeForeground = Color.WHITE;
     
-
     private JPanel panel;
     private JLabel label;
+    private JLabel iconLabel;
+    private javax.swing.ImageIcon blackIcon;
+    private javax.swing.ImageIcon whiteIcon;
 
     public menuItem(JPanel panel, JLabel label) {
         this.panel = panel;
         this.label = label;
     }
 
-   
+    public menuItem(JPanel panel, JLabel label, JLabel iconLabel, String blackIconPath, String whiteIconPath) {
+        this.panel = panel;
+        this.label = label;
+        this.iconLabel = iconLabel;
+        
+        java.net.URL blackUrl = getClass().getResource(blackIconPath);
+        if (blackUrl != null) {
+            this.blackIcon = new javax.swing.ImageIcon(blackUrl);
+        }
+        
+        java.net.URL whiteUrl = getClass().getResource(whiteIconPath);
+        if (whiteUrl != null) {
+            this.whiteIcon = new javax.swing.ImageIcon(whiteUrl);
+        }
+    }
+
+    public void resetIcon() {
+        if (iconLabel != null && blackIcon != null) {
+            iconLabel.setIcon(blackIcon);
+        }
+    }
+
+    public void iconPressed() {
+        if (iconLabel != null && whiteIcon != null) {
+            iconLabel.setIcon(whiteIcon);
+        }
+    }
 
     public void setDefault() {
         panel.setOpaque(false);
         label.setForeground(defaultForeground);
-
+        resetIcon();
         panel.repaint();
     }
 
     public void setActive() {
         panel.setOpaque(true);
         label.setForeground(activeForeground);
-
+        iconPressed();
         panel.repaint();
     }
 
@@ -49,5 +77,4 @@ public class menuItem {
             panel.setDefault();
         }
     }
-
 }

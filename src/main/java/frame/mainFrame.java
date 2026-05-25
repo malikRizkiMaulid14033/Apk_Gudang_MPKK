@@ -6,9 +6,12 @@ package frame;
 
 import Component.headerPanel;
 import Component.sidebarPanel;
-import Panel.barangMasuk;
-import Panel.dashboard;
-import Panel.masterBarang;
+import page.laporan;
+import page.barangKeluar;
+import page.barangMasuk;
+import page.dashboard;
+import page.masterBarang;
+import page.stokOpname;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 
@@ -47,8 +50,9 @@ public class mainFrame extends javax.swing.JFrame {
         panelContent.add(new dashboard(), "dashboard");
         panelContent.add(new masterBarang(), "masterBarang");
         panelContent.add(new barangMasuk(), "barangMasuk");
-//        panelContent.add(new barangKeluar(), "barangKeluar");
-//        panelContent.add(new Laporan(), "laporan");
+        panelContent.add(new barangKeluar(), "barangKeluar");
+        panelContent.add(new stokOpname(), "stokOpname");
+        panelContent.add(new laporan(), "laporan");
 
         // DEFAULT PAGE
         cardlayout.show(panelContent, "dashboard");
@@ -77,6 +81,13 @@ public class mainFrame extends javax.swing.JFrame {
         panelContent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setLocation(new java.awt.Point(0, 0));
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setMaximumSize(new java.awt.Dimension(968, 647));
+        setMinimumSize(new java.awt.Dimension(968, 647));
+        setResizable(false);
+        setType(java.awt.Window.Type.UTILITY);
 
         panelSidebar.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -95,19 +106,19 @@ public class mainFrame extends javax.swing.JFrame {
         panelHeader.setPreferredSize(new java.awt.Dimension(732, 113));
 
         lblLocation.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblLocation.setText("LOCATION");
+        lblLocation.setText("   ");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("ADMIN");
+        jLabel5.setText("               ");
 
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
         panelHeaderLayout.setHorizontalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(lblLocation)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 552, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(lblLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(27, 27, 27))
         );
@@ -158,6 +169,7 @@ public class mainFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

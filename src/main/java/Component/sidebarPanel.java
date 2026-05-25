@@ -3,16 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Component;
+
 import frame.mainFrame;
 import Class.Class_sidebar;
 import Class.menuItem;
-import Panel.dashboard;
+import page.dashboard;
 
 /**
  *
  * @author HP
  */
 public class sidebarPanel extends javax.swing.JPanel {
+
     private mainFrame main;
     private Class_sidebar sideBar;
     private menuItem menuDashboard;
@@ -21,7 +23,6 @@ public class sidebarPanel extends javax.swing.JPanel {
     private menuItem menuBarangKeluar;
     private menuItem menustockOpname;
     private menuItem menuLaporan;
-    
 
     /**
      * Creates new form sideBar
@@ -29,18 +30,16 @@ public class sidebarPanel extends javax.swing.JPanel {
     public sidebarPanel(mainFrame main) {
         initComponents();
         this.main = main;
-        
-        menuDashboard = new menuItem(panelDashboard, lblDashboard);
-        menumasterBarang = new menuItem(panelMasterBarang, lbLMasterBarang);
-        menuBarangMasuk = new menuItem(panelLaporan, lblLaporan);
-        menuBarangKeluar = new menuItem(panelKeluar, lblKeluar);
-        menustockOpname = new menuItem(panelOpname, lblOpname);
-        menuLaporan = new menuItem(panelLaporan, lblLaporan);
-        
-        
-        
-        menuItem.resetMenu(menuDashboard,menuBarangMasuk);
+        menuDashboard = new menuItem(panelDashboard, lblDashboard, jLabel8, "/images/navUnactive/dashboard.png", "/images/navActive/dashboard.png");
+        menumasterBarang = new menuItem(panelMasterBarang, lbLMasterBarang, jLabel6, "/images/navUnactive/package.png", "/images/navActive/package.png");
+        menuBarangMasuk = new menuItem(panelMasuk, lblMasuk, jLabel9, "/images/navUnactive/move_to.png", "/images/navActive/move_to.png");
+        menuBarangKeluar = new menuItem(panelKeluar, lblKeluar, jLabel10, "/images/navUnactive/outbox.png", "/images/navActive/outbox.png");
+        menustockOpname = new menuItem(panelOpname, lblOpname, jLabel11, "/images/navUnactive/checkbook.png", "/images/navActive/checkbook.png");
+        menuLaporan = new menuItem(panelLaporan, lblLaporan, jLabel7, "/images/navUnactive/analytics.png", "/images/navActive/analytics.png");
+
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
         menuDashboard.setActive();
+        panelDashboard.repaint();
     }
 
     /**
@@ -80,21 +79,23 @@ public class sidebarPanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(0, 77, 153));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("APLIKASI ");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 77, 153));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("GUDANG");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jLabel1.setBackground(new java.awt.Color(0, 77, 153));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 77, 153));
         jLabel1.setText("AG");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         panelMasterBarang.setBackground(new java.awt.Color(0, 77, 153));
         panelMasterBarang.setForeground(new java.awt.Color(71, 85, 105));
-        panelMasterBarang.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        panelMasterBarang.addHierarchyListener(this::panelMasterBarangHierarchyChanged);
+        panelMasterBarang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelMasterBarang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 panelMasterBarangMousePressed(evt);
@@ -102,7 +103,7 @@ public class sidebarPanel extends javax.swing.JPanel {
         });
         panelMasterBarang.setLayout(null);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/meta-logo-24 (1).png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         panelMasterBarang.add(jLabel6);
         jLabel6.setBounds(10, 10, 20, 20);
 
@@ -114,7 +115,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
         panelLaporan.setBackground(new java.awt.Color(0, 77, 153));
         panelLaporan.setForeground(new java.awt.Color(71, 85, 105));
-        panelLaporan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        panelLaporan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelLaporan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 panelLaporanMousePressed(evt);
@@ -122,7 +123,7 @@ public class sidebarPanel extends javax.swing.JPanel {
         });
         panelLaporan.setLayout(null);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/meta-logo-24 (1).png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         panelLaporan.add(jLabel7);
         jLabel7.setBounds(10, 10, 20, 20);
 
@@ -136,8 +137,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
         panelDashboard.setBackground(new java.awt.Color(0, 77, 153));
         panelDashboard.setForeground(new java.awt.Color(71, 85, 105));
-        panelDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        panelDashboard.addHierarchyListener(this::panelDashboardHierarchyChanged);
+        panelDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 panelDashboardMousePressed(evt);
@@ -145,7 +145,7 @@ public class sidebarPanel extends javax.swing.JPanel {
         });
         panelDashboard.setLayout(null);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/meta-logo-24 (1).png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         panelDashboard.add(jLabel8);
         jLabel8.setBounds(10, 10, 20, 20);
 
@@ -157,7 +157,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
         panelMasuk.setBackground(new java.awt.Color(0, 77, 153));
         panelMasuk.setForeground(new java.awt.Color(71, 85, 105));
-        panelMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        panelMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 panelMasukMousePressed(evt);
@@ -165,7 +165,7 @@ public class sidebarPanel extends javax.swing.JPanel {
         });
         panelMasuk.setLayout(null);
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/meta-logo-24 (1).png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         panelMasuk.add(jLabel9);
         jLabel9.setBounds(10, 10, 20, 20);
 
@@ -179,7 +179,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
         panelKeluar.setBackground(new java.awt.Color(0, 77, 153));
         panelKeluar.setForeground(new java.awt.Color(71, 85, 105));
-        panelKeluar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        panelKeluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelKeluar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 panelKeluarMousePressed(evt);
@@ -187,7 +187,7 @@ public class sidebarPanel extends javax.swing.JPanel {
         });
         panelKeluar.setLayout(null);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/meta-logo-24 (1).png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         panelKeluar.add(jLabel10);
         jLabel10.setBounds(10, 10, 20, 20);
 
@@ -201,7 +201,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
         panelOpname.setBackground(new java.awt.Color(0, 77, 153));
         panelOpname.setForeground(new java.awt.Color(71, 85, 105));
-        panelOpname.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        panelOpname.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelOpname.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 panelOpnameMousePressed(evt);
@@ -209,7 +209,7 @@ public class sidebarPanel extends javax.swing.JPanel {
         });
         panelOpname.setLayout(null);
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/meta-logo-24 (1).png"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         panelOpname.add(jLabel11);
         jLabel11.setBounds(10, 10, 20, 20);
 
@@ -266,49 +266,65 @@ public class sidebarPanel extends javax.swing.JPanel {
                 .addComponent(panelOpname, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(254, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void panelMasterBarangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMasterBarangMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard,menuBarangMasuk,menuBarangKeluar,menustockOpname,menuLaporan);
-        
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+
         menumasterBarang.setActive();
         main.showPage("masterBarang", "MASTER BARANG");
-        
+        panelMasterBarang.repaint();
+
     }//GEN-LAST:event_panelMasterBarangMousePressed
 
     private void panelLaporanMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelLaporanMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard,menuBarangMasuk,menuBarangKeluar,menustockOpname,menuLaporan);
-        
-        menuBarangMasuk.setActive();
-        main.showPage("barangMasuk", "BARANG MASUK");
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+
+        menuLaporan.setActive();
+        main.showPage("laporan", "LAPORAN");
+        panelLaporan.repaint();
     }//GEN-LAST:event_panelLaporanMousePressed
-
-    private void panelMasterBarangHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_panelMasterBarangHierarchyChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_panelMasterBarangHierarchyChanged
-
-    private void panelDashboardHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_panelDashboardHierarchyChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_panelDashboardHierarchyChanged
 
     private void panelDashboardMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelDashboardMousePressed
         // TODO add your handling code here:
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+
+        menuDashboard.setActive();
+        main.showPage("dashboard", "DASHBOARD");
+        panelDashboard.repaint();
+
+
     }//GEN-LAST:event_panelDashboardMousePressed
 
     private void panelMasukMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMasukMousePressed
         // TODO add your handling code here:
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+
+        menuBarangMasuk.setActive();
+        main.showPage("barangMasuk", "BARANG MASUK");
+        panelMasuk.repaint();
     }//GEN-LAST:event_panelMasukMousePressed
 
     private void panelKeluarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelKeluarMousePressed
         // TODO add your handling code here:
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+
+        menuBarangKeluar.setActive();
+        main.showPage("barangKeluar", "BARANG KELUAR");
+        panelKeluar.repaint();
     }//GEN-LAST:event_panelKeluarMousePressed
 
     private void panelOpnameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelOpnameMousePressed
         // TODO add your handling code here:
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+
+        menustockOpname.setActive();
+        main.showPage("stokOpname", "STOK OPNAME");
+        panelOpname.repaint();
     }//GEN-LAST:event_panelOpnameMousePressed
 
 
