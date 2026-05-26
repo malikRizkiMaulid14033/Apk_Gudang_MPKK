@@ -3,14 +3,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Component;
+
 import frame.mainFrame;
+import Class.Class_sidebar;
+import Class.menuItem;
+import page.dashboard;
 
 /**
  *
  * @author HP
  */
 public class sidebarPanel extends javax.swing.JPanel {
+
     private mainFrame main;
+    private Class_sidebar sideBar;
+    private menuItem menuDashboard;
+    private menuItem menumasterBarang;
+    private menuItem menuBarangMasuk;
+    private menuItem menuBarangKeluar;
+    private menuItem menustockOpname;
+    private menuItem menuLaporan;
 
     /**
      * Creates new form sideBar
@@ -18,6 +30,16 @@ public class sidebarPanel extends javax.swing.JPanel {
     public sidebarPanel(mainFrame main) {
         initComponents();
         this.main = main;
+        menuDashboard = new menuItem(panelDashboard, lblDashboard, jLabel8, "/images/navUnactive/dashboard.png", "/images/navActive/dashboard.png");
+        menumasterBarang = new menuItem(panelMasterBarang, lbLMasterBarang, jLabel6, "/images/navUnactive/package.png", "/images/navActive/package.png");
+        menuBarangMasuk = new menuItem(panelMasuk, lblMasuk, jLabel9, "/images/navUnactive/move_to.png", "/images/navActive/move_to.png");
+        menuBarangKeluar = new menuItem(panelKeluar, lblKeluar, jLabel10, "/images/navUnactive/outbox.png", "/images/navActive/outbox.png");
+        menustockOpname = new menuItem(panelOpname, lblOpname, jLabel11, "/images/navUnactive/checkbook.png", "/images/navActive/checkbook.png");
+        menuLaporan = new menuItem(panelLaporan, lblLaporan, jLabel7, "/images/navUnactive/analytics.png", "/images/navActive/analytics.png");
+
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+        menuDashboard.setActive();
+        panelDashboard.repaint();
     }
 
     /**
@@ -32,9 +54,24 @@ public class sidebarPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        panelMasterBarang = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbLMasterBarang = new javax.swing.JLabel();
+        panelLaporan = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        lblLaporan = new javax.swing.JLabel();
+        panelDashboard = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        lblDashboard = new javax.swing.JLabel();
+        panelMasuk = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        lblMasuk = new javax.swing.JLabel();
+        panelKeluar = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        lblKeluar = new javax.swing.JLabel();
+        panelOpname = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        lblOpname = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(242, 244, 247));
 
@@ -42,38 +79,147 @@ public class sidebarPanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(0, 77, 153));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("APLIKASI ");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 77, 153));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("GUDANG");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jLabel1.setBackground(new java.awt.Color(0, 77, 153));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 77, 153));
         jLabel1.setText("AG");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
-        jPanel1.setBackground(new java.awt.Color(0, 77, 153));
-        jPanel1.setForeground(new java.awt.Color(71, 85, 105));
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.setOpaque(false);
-        jPanel1.setLayout(null);
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/meta-logo-24 (1).png"))); // NOI18N
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(10, 10, 20, 20);
-
-        jLabel4.setBackground(new java.awt.Color(71, 85, 105));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("DASHBOARD");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+        panelMasterBarang.setBackground(new java.awt.Color(0, 77, 153));
+        panelMasterBarang.setForeground(new java.awt.Color(71, 85, 105));
+        panelMasterBarang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelMasterBarang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelMasterBarangMousePressed(evt);
             }
         });
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(40, 10, 80, 20);
+        panelMasterBarang.setLayout(null);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        panelMasterBarang.add(jLabel6);
+        jLabel6.setBounds(10, 10, 20, 20);
+
+        lbLMasterBarang.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lbLMasterBarang.setForeground(new java.awt.Color(255, 255, 255));
+        lbLMasterBarang.setText("MASTER BARANG");
+        panelMasterBarang.add(lbLMasterBarang);
+        lbLMasterBarang.setBounds(40, 10, 100, 16);
+
+        panelLaporan.setBackground(new java.awt.Color(0, 77, 153));
+        panelLaporan.setForeground(new java.awt.Color(71, 85, 105));
+        panelLaporan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelLaporan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelLaporanMousePressed(evt);
+            }
+        });
+        panelLaporan.setLayout(null);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        panelLaporan.add(jLabel7);
+        jLabel7.setBounds(10, 10, 20, 20);
+
+        lblLaporan.setBackground(new java.awt.Color(71, 85, 105));
+        lblLaporan.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lblLaporan.setForeground(new java.awt.Color(255, 255, 255));
+        lblLaporan.setText("LAPORAN");
+        lblLaporan.setFocusable(false);
+        panelLaporan.add(lblLaporan);
+        lblLaporan.setBounds(40, 10, 90, 20);
+
+        panelDashboard.setBackground(new java.awt.Color(0, 77, 153));
+        panelDashboard.setForeground(new java.awt.Color(71, 85, 105));
+        panelDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelDashboardMousePressed(evt);
+            }
+        });
+        panelDashboard.setLayout(null);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        panelDashboard.add(jLabel8);
+        jLabel8.setBounds(10, 10, 20, 20);
+
+        lblDashboard.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lblDashboard.setForeground(new java.awt.Color(255, 255, 255));
+        lblDashboard.setText("DASHBOARD");
+        panelDashboard.add(lblDashboard);
+        lblDashboard.setBounds(40, 10, 80, 16);
+
+        panelMasuk.setBackground(new java.awt.Color(0, 77, 153));
+        panelMasuk.setForeground(new java.awt.Color(71, 85, 105));
+        panelMasuk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelMasukMousePressed(evt);
+            }
+        });
+        panelMasuk.setLayout(null);
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        panelMasuk.add(jLabel9);
+        jLabel9.setBounds(10, 10, 20, 20);
+
+        lblMasuk.setBackground(new java.awt.Color(71, 85, 105));
+        lblMasuk.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lblMasuk.setForeground(new java.awt.Color(255, 255, 255));
+        lblMasuk.setText("BARANG MASUK");
+        lblMasuk.setFocusable(false);
+        panelMasuk.add(lblMasuk);
+        lblMasuk.setBounds(40, 10, 90, 20);
+
+        panelKeluar.setBackground(new java.awt.Color(0, 77, 153));
+        panelKeluar.setForeground(new java.awt.Color(71, 85, 105));
+        panelKeluar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelKeluar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelKeluarMousePressed(evt);
+            }
+        });
+        panelKeluar.setLayout(null);
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        panelKeluar.add(jLabel10);
+        jLabel10.setBounds(10, 10, 20, 20);
+
+        lblKeluar.setBackground(new java.awt.Color(71, 85, 105));
+        lblKeluar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lblKeluar.setForeground(new java.awt.Color(255, 255, 255));
+        lblKeluar.setText("BARANG KELUAR");
+        lblKeluar.setFocusable(false);
+        panelKeluar.add(lblKeluar);
+        lblKeluar.setBounds(40, 10, 90, 20);
+
+        panelOpname.setBackground(new java.awt.Color(0, 77, 153));
+        panelOpname.setForeground(new java.awt.Color(71, 85, 105));
+        panelOpname.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelOpname.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelOpnameMousePressed(evt);
+            }
+        });
+        panelOpname.setLayout(null);
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        panelOpname.add(jLabel11);
+        jLabel11.setBounds(10, 10, 20, 20);
+
+        lblOpname.setBackground(new java.awt.Color(71, 85, 105));
+        lblOpname.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lblOpname.setForeground(new java.awt.Color(255, 255, 255));
+        lblOpname.setText("STOCK OPNAME");
+        lblOpname.setFocusable(false);
+        panelOpname.add(lblOpname);
+        lblOpname.setBounds(40, 10, 90, 20);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -81,16 +227,22 @@ public class sidebarPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addContainerGap(21, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(panelLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(panelDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelMasterBarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelKeluar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelOpname, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,23 +254,101 @@ public class sidebarPanel extends javax.swing.JPanel {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(59, 59, 59)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addComponent(panelDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelMasterBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelKeluar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelOpname, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(254, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    private void panelMasterBarangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMasterBarangMousePressed
         // TODO add your handling code here:
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+
+        menumasterBarang.setActive();
+        main.showPage("masterBarang", "MASTER BARANG");
+        panelMasterBarang.repaint();
+
+    }//GEN-LAST:event_panelMasterBarangMousePressed
+
+    private void panelLaporanMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelLaporanMousePressed
+        // TODO add your handling code here:
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+
+        menuLaporan.setActive();
+        main.showPage("laporan", "LAPORAN");
+        panelLaporan.repaint();
+    }//GEN-LAST:event_panelLaporanMousePressed
+
+    private void panelDashboardMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelDashboardMousePressed
+        // TODO add your handling code here:
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+
+        menuDashboard.setActive();
         main.showPage("dashboard", "DASHBOARD");
-    }//GEN-LAST:event_jLabel4MouseClicked
+        panelDashboard.repaint();
+
+
+    }//GEN-LAST:event_panelDashboardMousePressed
+
+    private void panelMasukMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMasukMousePressed
+        // TODO add your handling code here:
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+
+        menuBarangMasuk.setActive();
+        main.showPage("barangMasuk", "BARANG MASUK");
+        panelMasuk.repaint();
+    }//GEN-LAST:event_panelMasukMousePressed
+
+    private void panelKeluarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelKeluarMousePressed
+        // TODO add your handling code here:
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+
+        menuBarangKeluar.setActive();
+        main.showPage("barangKeluar", "BARANG KELUAR");
+        panelKeluar.repaint();
+    }//GEN-LAST:event_panelKeluarMousePressed
+
+    private void panelOpnameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelOpnameMousePressed
+        // TODO add your handling code here:
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+
+        menustockOpname.setActive();
+        main.showPage("stokOpname", "STOK OPNAME");
+        panelOpname.repaint();
+    }//GEN-LAST:event_panelOpnameMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lbLMasterBarang;
+    private javax.swing.JLabel lblDashboard;
+    private javax.swing.JLabel lblKeluar;
+    private javax.swing.JLabel lblLaporan;
+    private javax.swing.JLabel lblMasuk;
+    private javax.swing.JLabel lblOpname;
+    private javax.swing.JPanel panelDashboard;
+    private javax.swing.JPanel panelKeluar;
+    private javax.swing.JPanel panelLaporan;
+    private javax.swing.JPanel panelMasterBarang;
+    private javax.swing.JPanel panelMasuk;
+    private javax.swing.JPanel panelOpname;
     // End of variables declaration//GEN-END:variables
 }

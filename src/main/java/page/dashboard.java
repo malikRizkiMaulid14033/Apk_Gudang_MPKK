@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Panel;
+package page;
 
 /**
  *
@@ -52,7 +52,5 @@ public class dashboard extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel panelContent;
-    private javax.swing.JPanel panelContent1;
     // End of variables declaration//GEN-END:variables
 }
