@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package frame;
+package page;
 
 /**
  *
  * @author HP
  */
-public class CrudAkunFrame extends javax.swing.JPanel {
+public class CrudAkun extends javax.swing.JPanel {
 
     /**
      * Creates new form CrudAkunFrame
      */
-    public CrudAkunFrame() {
+    public CrudAkun() {
         initComponents();
     }
 
