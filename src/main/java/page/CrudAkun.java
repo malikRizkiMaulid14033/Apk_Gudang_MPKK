@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package page;
-
+import Class.Class_akun;
 /**
  *
  * @author HP
@@ -15,6 +15,17 @@ public class CrudAkun extends javax.swing.JPanel {
      */
     public CrudAkun() {
         initComponents();
+        loadData();
+        EditBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditBtnActionPerformed(evt);
+            }
+        });
+        HapusBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HapusBtnActionPerformed(evt);
+            }
+        });
     }
 
     /**
@@ -54,6 +65,11 @@ public class CrudAkun extends javax.swing.JPanel {
         HapusBtn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         HapusBtn.setForeground(new java.awt.Color(255, 255, 255));
         HapusBtn.setText("Hapus Akun");
+        HapusBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HapusBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -124,6 +140,81 @@ public class CrudAkun extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+
+
+    private void EditBtnActionPerformed(java.awt.event.ActionEvent evt) {
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow != -1) {
+            try {
+                String idStr = jTable1.getValueAt(selectedRow, 0).toString();
+                int id_user = Integer.parseInt(idStr);
+                String username = jTable1.getValueAt(selectedRow, 1).toString();
+                String password = jTable1.getValueAt(selectedRow, 2).toString();
+                String role = jTable1.getValueAt(selectedRow, 3).toString();
+
+                javax.swing.JFrame topFrame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+                DialogFrame.EditAkunFrame editFrame = new DialogFrame.EditAkunFrame(topFrame, true, id_user, username, password, role);
+                editFrame.setLocationRelativeTo(this);
+                editFrame.setVisible(true);
+                loadData();
+            } catch (Exception e) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Data yang dipilih tidak valid: " + e.getMessage());
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Silakan pilih data yang akan diedit terlebih dahulu.");
+        }
+    }
+
+    public void loadData() {
+        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Username");
+        model.addColumn("Password");
+        model.addColumn("Role");
+        
+        Class_akun control = new Class_akun();
+        java.sql.ResultSet rs = control.getAllAkun();
+        try {
+            if (rs != null) {
+                while (rs.next()) {
+                    model.addRow(new Object[]{
+                        rs.getInt("id_user"),
+                        rs.getString("nama_user"),
+                        rs.getString("sandi"),
+                        rs.getString("role")
+                    });
+                }
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        }
+        jTable1.setModel(model);
+    }
+
+    private void HapusBtnActionPerformed(java.awt.event.ActionEvent evt) {
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow != -1) {
+            int confirm = javax.swing.JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin menghapus akun ini?", "Konfirmasi Hapus", javax.swing.JOptionPane.YES_NO_OPTION);
+            if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+                try {
+                    String idStr = jTable1.getValueAt(selectedRow, 0).toString();
+                    int id_user = Integer.parseInt(idStr);
+                    Class_akun control = new Class_akun();
+                    boolean success = control.hapusAkun(id_user);
+                    if (success) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Akun berhasil dihapus!");
+                        loadData();
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Gagal menghapus akun.");
+                    }
+                } catch (Exception e) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage());
+                }
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Silakan pilih data yang akan dihapus terlebih dahulu.");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton EditBtn;

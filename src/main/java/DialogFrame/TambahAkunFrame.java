@@ -4,6 +4,8 @@
  */
 package DialogFrame;
 
+import Class.Class_akun;
+
 /**
  *
  * @author HP
@@ -82,8 +84,7 @@ public class TambahAkunFrame extends javax.swing.JDialog {
 
         jLabel4.setText("Role");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "STAFF", "BOSS" }));
-        jComboBox1.setSelectedIndex(1);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "STAFF", "BOS" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -94,11 +95,21 @@ public class TambahAkunFrame extends javax.swing.JDialog {
         TambahBTN.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         TambahBTN.setForeground(new java.awt.Color(255, 255, 255));
         TambahBTN.setText("Tambah");
+        TambahBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TambahBTNActionPerformed(evt);
+            }
+        });
 
         CancelBTN.setBackground(new java.awt.Color(255, 0, 0));
         CancelBTN.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         CancelBTN.setForeground(new java.awt.Color(255, 255, 255));
         CancelBTN.setText("Cancel");
+        CancelBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -181,6 +192,43 @@ public class TambahAkunFrame extends javax.swing.JDialog {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void TambahBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TambahBTNActionPerformed
+        String username = txtUsername.getText().trim();
+        String password = new String(PasswordField.getPassword());
+        String confirmPassword = new String(ConfirmPasswordfield.getPassword());
+        String role = jComboBox1.getSelectedItem().toString();
+        
+        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || 
+            username.equals("Username") || password.equals("Password")) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Semua data harus diisi!", "Gagal", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if (!password.equals(confirmPassword)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Konfirmasi password tidak cocok!", "Gagal", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Class_akun control = new Class_akun();
+        if (control.CekUsername(username)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Username sudah digunakan!", "Gagal", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        boolean success = control.tambahAkun(username, password, role);
+        if (success) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Data Berhasil Disimpan", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Menampilkan Pesan Gagal Simpan", "Gagal", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_TambahBTNActionPerformed
+
+    private void CancelBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBTNActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_CancelBTNActionPerformed
 
     /**
      * @param args the command line arguments
