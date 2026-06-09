@@ -7,8 +7,8 @@ package frame;
 import Component.headerPanel;
 import Component.sidebarPanel;
 import page.laporan;
-import page.barangKeluar;
-import page.barangMasuk;
+import page.stockOut;
+import page.restock;
 import page.dashboard;
 import page.masterBarang;
 import page.stokOpname;
@@ -49,8 +49,8 @@ public class mainFrame extends javax.swing.JFrame {
         // REGISTER PAGE
         panelContent.add(new dashboard(), "dashboard");
         panelContent.add(new masterBarang(), "masterBarang");
-        panelContent.add(new barangMasuk(), "barangMasuk");
-        panelContent.add(new barangKeluar(), "barangKeluar");
+        panelContent.add(new restock(), "reStock");
+        panelContent.add(new stockOut(), "stockOut");
         panelContent.add(new stokOpname(), "stokOpname");
         panelContent.add(new laporan(), "laporan");
 
@@ -81,13 +81,10 @@ public class mainFrame extends javax.swing.JFrame {
         panelContent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
         setLocation(new java.awt.Point(0, 0));
         setMaximizedBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setMaximumSize(new java.awt.Dimension(968, 647));
         setMinimumSize(new java.awt.Dimension(968, 647));
-        setResizable(false);
-        setType(java.awt.Window.Type.UTILITY);
 
         panelSidebar.setBackground(new java.awt.Color(204, 255, 255));
 
