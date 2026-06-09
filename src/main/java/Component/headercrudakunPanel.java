@@ -4,6 +4,8 @@
  */
 package Component;
 
+import DialogFrame.TambahAkunFrame;
+
 /**
  *
  * @author HP
@@ -99,8 +101,26 @@ public class headercrudakunPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TambahBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TambahBtnActionPerformed
-        // TODO add your handling code here:
+        javax.swing.JFrame topFrame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        DialogFrame.TambahAkunFrame tambahFrame = new DialogFrame.TambahAkunFrame(topFrame, true);
+        tambahFrame.setLocationRelativeTo(this);
+        tambahFrame.setVisible(true);
+        
+        // Refresh CrudAkun table after adding account
+        refreshCrudAkun(topFrame);
     }//GEN-LAST:event_TambahBtnActionPerformed
+
+    private void refreshCrudAkun(java.awt.Container container) {
+        if (container == null) return;
+        for (java.awt.Component comp : container.getComponents()) {
+            if (comp instanceof page.CrudAkun) {
+                ((page.CrudAkun) comp).loadData();
+                return;
+            } else if (comp instanceof java.awt.Container) {
+                refreshCrudAkun((java.awt.Container) comp);
+            }
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

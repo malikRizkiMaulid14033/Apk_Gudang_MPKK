@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package page;
-
+import Class.Class_akun;
 /**
  *
  * @author HP
@@ -15,6 +15,33 @@ public class CrudAkun extends javax.swing.JPanel {
      */
     public CrudAkun() {
         initComponents();
+        loadData();
+        EditBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditBtnActionPerformed(evt);
+            }
+        });
+        HapusBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HapusBtnActionPerformed(evt);
+            }
+        });
+        txt_cariakun.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                String searchString = txt_cariakun.getText();
+                if (searchString.equals("Cari nama atau username....")) {
+                    searchString = "";
+                }
+                cariakun(searchString);
+            }
+        });
+    }
+
+    private void cariakun(String str) {
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) TblData.getModel();
+        javax.swing.table.TableRowSorter<javax.swing.table.DefaultTableModel> tr = new javax.swing.table.TableRowSorter<>(model);
+        TblData.setRowSorter(tr);
+        tr.setRowFilter(javax.swing.RowFilter.regexFilter("(?i)" + str));
     }
 
     /**
@@ -27,21 +54,21 @@ public class CrudAkun extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel13 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_cariakun = new javax.swing.JTextField();
         EditBtn = new javax.swing.JButton();
         HapusBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TblData = new javax.swing.JTable();
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.setBackground(new java.awt.Color(242, 244, 247));
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField1.setText("Cari nama atau username....");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txt_cariakun.setBackground(new java.awt.Color(242, 244, 247));
+        txt_cariakun.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txt_cariakun.setForeground(new java.awt.Color(153, 153, 153));
+        txt_cariakun.setText("Cari nama atau username....");
+        txt_cariakun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txt_cariakunActionPerformed(evt);
             }
         });
 
@@ -54,6 +81,11 @@ public class CrudAkun extends javax.swing.JPanel {
         HapusBtn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         HapusBtn.setForeground(new java.awt.Color(255, 255, 255));
         HapusBtn.setText("Hapus Akun");
+        HapusBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HapusBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -61,7 +93,7 @@ public class CrudAkun extends javax.swing.JPanel {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_cariakun, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(123, 123, 123)
                 .addComponent(EditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75)
@@ -73,14 +105,14 @@ public class CrudAkun extends javax.swing.JPanel {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_cariakun, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(HapusBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setAutoCreateRowSorter(true);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TblData.setAutoCreateRowSorter(true);
+        TblData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -91,7 +123,7 @@ public class CrudAkun extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TblData);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -120,17 +152,100 @@ public class CrudAkun extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void txt_cariakunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cariakunActionPerformed
+        // 
+    }//GEN-LAST:event_txt_cariakunActionPerformed
 
+
+
+    private void EditBtnActionPerformed(java.awt.event.ActionEvent evt) {
+        int selectedRow = TblData.getSelectedRow();
+        if (selectedRow != -1) {
+            try {
+                String idStr = TblData.getValueAt(selectedRow, 0).toString();
+                int id_user = Integer.parseInt(idStr);
+                String username = TblData.getValueAt(selectedRow, 1).toString();
+                String password = TblData.getValueAt(selectedRow, 2).toString();
+                String role = TblData.getValueAt(selectedRow, 3).toString();
+
+                javax.swing.JFrame topFrame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+                DialogFrame.EditAkunFrame editFrame = new DialogFrame.EditAkunFrame(topFrame, true, id_user, username, password, role);
+                editFrame.setLocationRelativeTo(this);
+                editFrame.setVisible(true);
+                loadData();
+            } catch (Exception e) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Data yang dipilih tidak valid: " + e.getMessage());
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Silakan pilih data yang akan diedit terlebih dahulu.");
+        }
+    }
+
+    public void loadData() {
+        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Username");
+        model.addColumn("Password");
+        model.addColumn("Role");
+        
+        Class_akun control = new Class_akun();
+        java.sql.ResultSet rs = control.getAllAkun();
+        try {
+            if (rs != null) {
+                while (rs.next()) {
+                    model.addRow(new Object[]{
+                        rs.getInt("id_user"),
+                        rs.getString("nama_user"),
+                        rs.getString("sandi"),
+                        rs.getString("role")
+                    });
+                }
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        }
+        TblData.setModel(model);
+        
+        String currentSearch = txt_cariakun.getText();
+        if (currentSearch != null && !currentSearch.isEmpty() && !currentSearch.equals("Cari nama atau username....")) {
+            cariakun(currentSearch);
+        } else {
+            javax.swing.table.TableRowSorter<javax.swing.table.DefaultTableModel> tr = new javax.swing.table.TableRowSorter<>(model);
+            TblData.setRowSorter(tr);
+        }
+    }
+
+    private void HapusBtnActionPerformed(java.awt.event.ActionEvent evt) {
+        int selectedRow = TblData.getSelectedRow();
+        if (selectedRow != -1) {
+            int confirm = javax.swing.JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin menghapus akun ini?", "Konfirmasi Hapus", javax.swing.JOptionPane.YES_NO_OPTION);
+            if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+                try {
+                    String idStr = TblData.getValueAt(selectedRow, 0).toString();
+                    int id_user = Integer.parseInt(idStr);
+                    Class_akun control = new Class_akun();
+                    boolean success = control.hapusAkun(id_user);
+                    if (success) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Akun berhasil dihapus!");
+                        loadData();
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Gagal menghapus akun.");
+                    }
+                } catch (Exception e) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage());
+                }
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Silakan pilih data yang akan dihapus terlebih dahulu.");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton EditBtn;
     private javax.swing.JButton HapusBtn;
+    private javax.swing.JTable TblData;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txt_cariakun;
     // End of variables declaration//GEN-END:variables
 }

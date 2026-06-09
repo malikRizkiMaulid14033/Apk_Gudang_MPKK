@@ -4,11 +4,15 @@
  */
 package DialogFrame;
 
+import Class.Class_akun;
+
 /**
  *
  * @author HP
  */
 public class EditAkunFrame extends javax.swing.JDialog {
+
+    private int idUser;
 
     /**
      * Creates new form EditAkunFrame
@@ -16,6 +20,16 @@ public class EditAkunFrame extends javax.swing.JDialog {
     public EditAkunFrame(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public EditAkunFrame(java.awt.Frame parent, boolean modal, int idUser, String username, String password, String role) {
+        super(parent, modal);
+        initComponents();
+        this.idUser = idUser;
+        txtUsername.setText(username);
+        PasswordField.setText(password);
+        ConfirmPasswordfield.setText(password);
+        jComboBox1.setSelectedItem(role);
     }
 
     /**
@@ -82,8 +96,7 @@ public class EditAkunFrame extends javax.swing.JDialog {
 
         jLabel4.setText("Role");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "STAFF", "BOSS" }));
-        jComboBox1.setSelectedIndex(1);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMIN", "STAFF", "BOS" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -94,11 +107,21 @@ public class EditAkunFrame extends javax.swing.JDialog {
         EditBTN.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         EditBTN.setForeground(new java.awt.Color(255, 255, 255));
         EditBTN.setText("Edit");
+        EditBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditBTNActionPerformed(evt);
+            }
+        });
 
         CancelBTN.setBackground(new java.awt.Color(255, 0, 0));
         CancelBTN.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         CancelBTN.setForeground(new java.awt.Color(255, 255, 255));
         CancelBTN.setText("Cancel");
+        CancelBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -183,6 +206,37 @@ public class EditAkunFrame extends javax.swing.JDialog {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void EditBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditBTNActionPerformed
+        String username = txtUsername.getText();
+        String password = new String(PasswordField.getPassword());
+        String confirmPassword = new String(ConfirmPasswordfield.getPassword());
+        String role = jComboBox1.getSelectedItem().toString();
+
+        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Semua kolom harus diisi!");
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Password dan Konfirmasi Password tidak cocok!");
+            return;
+        }
+
+        Class_akun control = new Class_akun();
+        boolean success = control.updateAkun(this.idUser, username, password, role);
+        if (success) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Akun berhasil diupdate!");
+            this.dispose();
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Gagal mengupdate akun.");
+        }
+    }//GEN-LAST:event_EditBTNActionPerformed
+
+    private void CancelBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBTNActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_CancelBTNActionPerformed
 
     /**
      * @param args the command line arguments

@@ -23,7 +23,7 @@ public class Class_akun extends Koneksi {
         }
     }
     
-    public boolean usernameAda(String username) {
+    public boolean CekUsername(String username) {
         try {
             String sql = "SELECT * FROM user WHERE nama_user = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -78,6 +78,16 @@ public class Class_akun extends Koneksi {
             e.printStackTrace();
         }
         return false;
+    }
+    public ResultSet getAllAkun() {
+        try {
+            String sql = "SELECT * FROM user";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            return ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
 
