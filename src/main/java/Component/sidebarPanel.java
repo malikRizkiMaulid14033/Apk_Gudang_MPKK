@@ -19,8 +19,8 @@ public class sidebarPanel extends javax.swing.JPanel {
     private Class_sidebar sideBar;
     private menuItem menuDashboard;
     private menuItem menumasterBarang;
-    private menuItem menuBarangMasuk;
-    private menuItem menuBarangKeluar;
+    private menuItem menuRestock;
+    private menuItem menuStockOut;
     private menuItem menustockOpname;
     private menuItem menuLaporan;
 
@@ -32,12 +32,12 @@ public class sidebarPanel extends javax.swing.JPanel {
         this.main = main;
         menuDashboard = new menuItem(panelDashboard, lblDashboard, jLabel8, "/images/navUnactive/dashboard.png", "/images/navActive/dashboard.png");
         menumasterBarang = new menuItem(panelMasterBarang, lbLMasterBarang, jLabel6, "/images/navUnactive/package.png", "/images/navActive/package.png");
-        menuBarangMasuk = new menuItem(panelMasuk, lblMasuk, jLabel9, "/images/navUnactive/move_to.png", "/images/navActive/move_to.png");
-        menuBarangKeluar = new menuItem(panelKeluar, lblKeluar, jLabel10, "/images/navUnactive/outbox.png", "/images/navActive/outbox.png");
+        menuRestock = new menuItem(panelMasuk, lblMasuk, jLabel9, "/images/navUnactive/move_to.png", "/images/navActive/move_to.png");
+        menuStockOut = new menuItem(panelKeluar, lblKeluar, jLabel10, "/images/navUnactive/outbox.png", "/images/navActive/outbox.png");
         menustockOpname = new menuItem(panelOpname, lblOpname, jLabel11, "/images/navUnactive/checkbook.png", "/images/navActive/checkbook.png");
         menuLaporan = new menuItem(panelLaporan, lblLaporan, jLabel7, "/images/navUnactive/analytics.png", "/images/navActive/analytics.png");
 
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan);
         menuDashboard.setActive();
         panelDashboard.repaint();
     }
@@ -172,7 +172,7 @@ public class sidebarPanel extends javax.swing.JPanel {
         lblMasuk.setBackground(new java.awt.Color(71, 85, 105));
         lblMasuk.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         lblMasuk.setForeground(new java.awt.Color(255, 255, 255));
-        lblMasuk.setText("BARANG MASUK");
+        lblMasuk.setText("RE-STOCK");
         lblMasuk.setFocusable(false);
         panelMasuk.add(lblMasuk);
         lblMasuk.setBounds(40, 10, 90, 20);
@@ -194,7 +194,7 @@ public class sidebarPanel extends javax.swing.JPanel {
         lblKeluar.setBackground(new java.awt.Color(71, 85, 105));
         lblKeluar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         lblKeluar.setForeground(new java.awt.Color(255, 255, 255));
-        lblKeluar.setText("BARANG KELUAR");
+        lblKeluar.setText("STOCK OUT");
         lblKeluar.setFocusable(false);
         panelKeluar.add(lblKeluar);
         lblKeluar.setBounds(40, 10, 90, 20);
@@ -272,7 +272,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
     private void panelMasterBarangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMasterBarangMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan);
 
         menumasterBarang.setActive();
         main.showPage("masterBarang", "MASTER BARANG");
@@ -282,7 +282,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
     private void panelLaporanMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelLaporanMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan);
 
         menuLaporan.setActive();
         main.showPage("laporan", "LAPORAN");
@@ -291,7 +291,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
     private void panelDashboardMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelDashboardMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan);
 
         menuDashboard.setActive();
         main.showPage("dashboard", "DASHBOARD");
@@ -302,25 +302,25 @@ public class sidebarPanel extends javax.swing.JPanel {
 
     private void panelMasukMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMasukMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan);
 
-        menuBarangMasuk.setActive();
-        main.showPage("barangMasuk", "BARANG MASUK");
+        menuRestock.setActive();
+        main.showPage("reStock", "RE-STOCK");
         panelMasuk.repaint();
     }//GEN-LAST:event_panelMasukMousePressed
 
     private void panelKeluarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelKeluarMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan);
 
-        menuBarangKeluar.setActive();
-        main.showPage("barangKeluar", "BARANG KELUAR");
+        menuStockOut.setActive();
+        main.showPage("stockOut", "STOCK OUT");
         panelKeluar.repaint();
     }//GEN-LAST:event_panelKeluarMousePressed
 
     private void panelOpnameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelOpnameMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuBarangMasuk, menuBarangKeluar, menustockOpname, menuLaporan);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan);
 
         menustockOpname.setActive();
         main.showPage("stokOpname", "STOK OPNAME");
