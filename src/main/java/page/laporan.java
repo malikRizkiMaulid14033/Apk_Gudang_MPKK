@@ -4,19 +4,79 @@
  */
 package page;
 
+import Class.Class_Laporan;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author HP
  */
 public class laporan extends javax.swing.JPanel {
-
+Class_Laporan backendLaporan = new Class_Laporan();
     /**
      * Creates new form Laporan
      */
     public laporan() {
         initComponents();
+        loadKategori();
+        loadDataAwal();
+    }
+    private void loadKategori() {
+        // Hapus item selain "Semua Kategori" untuk mencegah duplikasi jika terpanggil ulang
+        while (FilterKategori.getItemCount() > 1) {
+            FilterKategori.removeItemAt(1);
+        }
+
+        ResultSet rs = backendLaporan.getKategoriList();
+        try {
+            while (rs != null && rs.next()) {
+                FilterKategori.addItem(rs.getString("kategori"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * Method untuk menampilkan data ResultSet ke dalam JTable
+     */
+    private void tampilDataKeTabel(ResultSet rs) {
+        // Bikin struktur kolom tabel baru sesuai desain revisi transaksi
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Kode Barang");
+        model.addColumn("Nama Barang");
+        model.addColumn("Kategori");
+        model.addColumn("Tipe Transaksi");
+        model.addColumn("Tanggal");
+        model.addColumn("Jumlah");
+
+        try {
+            while (rs != null && rs.next()) {
+                model.addRow(new Object[]{
+                    rs.getString("kode_barang"),
+                    rs.getString("nama_barang"),
+                    rs.getString("kategori"),
+                    rs.getString("tipe_transaksi"), // "Restok" atau "Jual"
+                    rs.getString("tanggal"),
+                    rs.getInt("jumlah")
+                });
+            }
+            TblLaporan.setModel(model);
+            if (rs != null) rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * memuat semua data riwayat transaksi di awal halaman dibuka
+     */
+    private void loadDataAwal() {
+        ResultSet rs = backendLaporan.getAllLaporanTransaksi();
+        tampilDataKeTabel(rs);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -219,10 +279,54 @@ public class laporan extends javax.swing.JPanel {
 
     private void BtnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResetActionPerformed
         // TODO add your handling code here:
+        FilterKategori.setSelectedIndex(0);
+        UrutBerdasarkan.setSelectedIndex(0);
+        
+        // 2. Kosongkan kalender
+        FltrDariTanggal.setDate(null);
+        FltrSampaiTanggal.setDate(null);
+        
+        // 3. Tampilkan ulang semua riwayat transaksi seperti semula
+        loadDataAwal();
     }//GEN-LAST:event_BtnResetActionPerformed
 
     private void BtnTampilkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTampilkanActionPerformed
         // TODO add your handling code here:
+        // Ambil nilai dari UI
+        String kategori = null;
+        if (FilterKategori.getSelectedItem() != null) {
+            kategori = FilterKategori.getSelectedItem().toString();
+        }
+
+        String sortBy = null;
+        if (UrutBerdasarkan.getSelectedItem() != null) {
+            sortBy = UrutBerdasarkan.getSelectedItem().toString();
+        }
+
+        // Validasi input tanggal parsial
+        if ((FltrDariTanggal.getDate() != null && FltrSampaiTanggal.getDate() == null) || 
+            (FltrDariTanggal.getDate() == null && FltrSampaiTanggal.getDate() != null)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Mohon isi kedua rentang tanggal (Dari & Sampai) dengan lengkap.", "Peringatan", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Ambil dan konversi tanggal
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dariTgl = null;
+        String sampaiTgl = null;
+
+        if (FltrDariTanggal.getDate() != null) {
+            dariTgl = sdf.format(FltrDariTanggal.getDate());
+        }
+        if (FltrSampaiTanggal.getDate() != null) {
+            sampaiTgl = sdf.format(FltrSampaiTanggal.getDate());
+        }
+
+        // Kirim semua filter ke class backend
+        ResultSet rs = backendLaporan.getLaporanTransaksi(kategori, dariTgl, sampaiTgl, sortBy);
+        
+        // Tampilkan hasilnya ke tabel
+        tampilDataKeTabel(rs);
     }//GEN-LAST:event_BtnTampilkanActionPerformed
 
     private void FilterKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterKategoriActionPerformed
