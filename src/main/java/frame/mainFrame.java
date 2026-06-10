@@ -12,6 +12,7 @@ import page.restock;
 import page.dashboard;
 import page.masterBarang;
 import page.stokOpname;
+import page.CrudAkun;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 
@@ -53,6 +54,7 @@ public class mainFrame extends javax.swing.JFrame {
         panelContent.add(new stockOut(), "stockOut");
         panelContent.add(new stokOpname(), "stokOpname");
         panelContent.add(new laporan(), "laporan");
+        panelContent.add(new CrudAkun(), "CrudAkun");
 
         // DEFAULT PAGE
         cardlayout.show(panelContent, "dashboard");
@@ -62,6 +64,12 @@ public class mainFrame extends javax.swing.JFrame {
         cardlayout.show(panelContent, pageName);
 
         header.setTitle(title);
+
+        if (pageName.equals("CrudAkun")) {
+            header.showAddAccountButton(true);
+        } else {
+            header.showAddAccountButton(false);
+        }
 
     }
 

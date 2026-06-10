@@ -7,7 +7,11 @@ package Component;
 import frame.mainFrame;
 import Class.Class_sidebar;
 import Class.menuItem;
-import page.dashboard;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import server.Session;
+import main.Login;
 
 /**
  *
@@ -23,6 +27,8 @@ public class sidebarPanel extends javax.swing.JPanel {
     private menuItem menuStockOut;
     private menuItem menustockOpname;
     private menuItem menuLaporan;
+    private menuItem menuManajemenAkun;
+    private menuItem menuLogOut;
 
     /**
      * Creates new form sideBar
@@ -36,11 +42,15 @@ public class sidebarPanel extends javax.swing.JPanel {
         menuStockOut = new menuItem(panelKeluar, lblKeluar, jLabel10, "/images/navUnactive/outbox.png", "/images/navActive/outbox.png");
         menustockOpname = new menuItem(panelOpname, lblOpname, jLabel11, "/images/navUnactive/checkbook.png", "/images/navActive/checkbook.png");
         menuLaporan = new menuItem(panelLaporan, lblLaporan, jLabel7, "/images/navUnactive/analytics.png", "/images/navActive/analytics.png");
+        menuManajemenAkun = new menuItem(panelManajemen, labelManajemen, jLabel12, "/images/navUnactive/manage_accounts.png", "/images/navActive/manage_accounts.png");
+        menuLogOut = new menuItem(panelLogOut, labelLogOut, jLabel4, "/images/navActive/logOut.png", "/images/navActive/logOut.png");
+        
 
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
         menuDashboard.setActive();
         panelDashboard.repaint();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,6 +82,12 @@ public class sidebarPanel extends javax.swing.JPanel {
         panelOpname = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         lblOpname = new javax.swing.JLabel();
+        panelLogOut = new javax.swing.JPanel();
+        labelLogOut = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        panelManajemen = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        labelManajemen = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(242, 244, 247));
 
@@ -221,27 +237,73 @@ public class sidebarPanel extends javax.swing.JPanel {
         panelOpname.add(lblOpname);
         lblOpname.setBounds(40, 10, 90, 20);
 
+        panelLogOut.setBackground(new java.awt.Color(255, 255, 255));
+        panelLogOut.setForeground(new java.awt.Color(71, 85, 105));
+        panelLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelLogOut.setOpaque(false);
+        panelLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelLogOutMousePressed(evt);
+            }
+        });
+        panelLogOut.setLayout(null);
+
+        labelLogOut.setBackground(new java.awt.Color(255, 255, 255));
+        labelLogOut.setFont(new java.awt.Font("Inter", 1, 11)); // NOI18N
+        labelLogOut.setForeground(new java.awt.Color(186, 26, 26));
+        labelLogOut.setText("LOGOUT");
+        labelLogOut.setFocusable(false);
+        panelLogOut.add(labelLogOut);
+        labelLogOut.setBounds(40, 10, 90, 20);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/navActive/logOut.png"))); // NOI18N
+        panelLogOut.add(jLabel4);
+        jLabel4.setBounds(10, 10, 22, 22);
+
+        panelManajemen.setBackground(new java.awt.Color(0, 77, 153));
+        panelManajemen.setForeground(new java.awt.Color(71, 85, 105));
+        panelManajemen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelManajemen.setOpaque(false);
+        panelManajemen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelManajemenMousePressed(evt);
+            }
+        });
+        panelManajemen.setLayout(null);
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/navActive/manage_accounts.png"))); // NOI18N
+        panelManajemen.add(jLabel12);
+        jLabel12.setBounds(10, 10, 20, 20);
+
+        labelManajemen.setBackground(new java.awt.Color(71, 85, 105));
+        labelManajemen.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        labelManajemen.setForeground(new java.awt.Color(51, 51, 51));
+        labelManajemen.setText("MANAJEMEN AKUN");
+        labelManajemen.setFocusable(false);
+        panelManajemen.add(labelManajemen);
+        labelManajemen.setBounds(40, 10, 120, 20);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(panelLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(panelDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panelMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panelMasterBarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panelKeluar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(panelOpname, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelLaporan, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(panelDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelMasterBarang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelKeluar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelOpname, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))))
+                            .addComponent(jLabel3)))
+                    .addComponent(panelLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(panelManajemen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -266,13 +328,17 @@ public class sidebarPanel extends javax.swing.JPanel {
                 .addComponent(panelOpname, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(254, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addComponent(panelManajemen, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void panelMasterBarangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMasterBarangMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
 
         menumasterBarang.setActive();
         main.showPage("masterBarang", "MASTER BARANG");
@@ -282,7 +348,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
     private void panelLaporanMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelLaporanMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
 
         menuLaporan.setActive();
         main.showPage("laporan", "LAPORAN");
@@ -291,7 +357,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
     private void panelDashboardMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelDashboardMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
 
         menuDashboard.setActive();
         main.showPage("dashboard", "DASHBOARD");
@@ -302,7 +368,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
     private void panelMasukMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMasukMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
 
         menuRestock.setActive();
         main.showPage("reStock", "RE-STOCK");
@@ -311,7 +377,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
     private void panelKeluarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelKeluarMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
 
         menuStockOut.setActive();
         main.showPage("stockOut", "STOCK OUT");
@@ -320,24 +386,53 @@ public class sidebarPanel extends javax.swing.JPanel {
 
     private void panelOpnameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelOpnameMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
 
         menustockOpname.setActive();
         main.showPage("stokOpname", "STOK OPNAME");
         panelOpname.repaint();
     }//GEN-LAST:event_panelOpnameMousePressed
 
+    private void panelLogOutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelLogOutMousePressed
+        // TODO add your handling code here:
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
+        int confirm = JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin logout?", "Konfirmasi Logout", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            Session.clearSession();
+//            this.dispose
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            frame.dispose();
+            
+            Login loginForm = new Login();
+            loginForm.setLocationRelativeTo(null);
+            loginForm.setVisible(true);
+        }
+        
+    }//GEN-LAST:event_panelLogOutMousePressed
+
+    private void panelManajemenMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelManajemenMousePressed
+        // TODO add your handling code here:
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
+        menuManajemenAkun.setActive();
+        main.showPage("CrudAkun", "MANAJEMEN AKUN");
+        panelManajemen.repaint();
+    }//GEN-LAST:event_panelManajemenMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel labelLogOut;
+    private javax.swing.JLabel labelManajemen;
     private javax.swing.JLabel lbLMasterBarang;
     private javax.swing.JLabel lblDashboard;
     private javax.swing.JLabel lblKeluar;
@@ -347,6 +442,8 @@ public class sidebarPanel extends javax.swing.JPanel {
     private javax.swing.JPanel panelDashboard;
     private javax.swing.JPanel panelKeluar;
     private javax.swing.JPanel panelLaporan;
+    private javax.swing.JPanel panelLogOut;
+    private javax.swing.JPanel panelManajemen;
     private javax.swing.JPanel panelMasterBarang;
     private javax.swing.JPanel panelMasuk;
     private javax.swing.JPanel panelOpname;

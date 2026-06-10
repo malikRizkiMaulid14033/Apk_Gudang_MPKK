@@ -15,9 +15,10 @@ public class headerPanel extends javax.swing.JPanel {
      */
     public headerPanel() {
         initComponents();
+        TambahBtn.setVisible(false);
     }
-    
-    public void setTitle(String title){
+
+    public void setTitle(String title) {
         lblLocation.setText(title);
     }
 
@@ -35,6 +36,9 @@ public class headerPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         lblLocation = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        TambahBtn = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 77, 153));
@@ -53,41 +57,66 @@ public class headerPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(247, 249, 252));
         setPreferredSize(new java.awt.Dimension(732, 113));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblLocation.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblLocation.setText("DASHBOARD");
+        add(lblLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 57, 228, 20));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("ADMIN");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 50, 20));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(lblLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 400, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(27, 27, 27))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(34, 34, 34))
-        );
+        TambahBtn.setBackground(new java.awt.Color(0, 51, 255));
+        TambahBtn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        TambahBtn.setForeground(new java.awt.Color(255, 255, 255));
+        TambahBtn.setText("+   Tambah Akun");
+        TambahBtn.addActionListener(this::TambahBtnActionPerformed);
+        add(TambahBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 175, 37));
+
+        jLabel4.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        jLabel4.setText("USER NAME");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, -1, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/account_circle.png"))); // NOI18N
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void TambahBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TambahBtnActionPerformed
+        javax.swing.JFrame topFrame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        DialogFrame.TambahAkunFrame tambahFrame = new DialogFrame.TambahAkunFrame(topFrame, true);
+        tambahFrame.setLocationRelativeTo(this);
+        tambahFrame.setVisible(true);
 
+        // Refresh CrudAkun table after adding account
+        refreshCrudAkun(topFrame);
+    }//GEN-LAST:event_TambahBtnActionPerformed
+    private void refreshCrudAkun(java.awt.Container container) {
+        if (container == null) {
+            return;
+        }
+        for (java.awt.Component comp : container.getComponents()) {
+            if (comp instanceof page.CrudAkun) {
+                ((page.CrudAkun) comp).loadData();
+                return;
+            } else if (comp instanceof java.awt.Container) {
+                refreshCrudAkun((java.awt.Container) comp);
+            }
+        }
+    }
+
+    public void showAddAccountButton(boolean visible) {
+        TambahBtn.setVisible(visible);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton TambahBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lblLocation;
     // End of variables declaration//GEN-END:variables
 }

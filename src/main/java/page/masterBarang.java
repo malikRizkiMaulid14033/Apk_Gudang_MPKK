@@ -134,7 +134,7 @@ public class masterBarang extends javax.swing.JPanel {
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btnNew.addActionListener(this::btnNewActionPerformed);
 
-        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laptop", "Audio", "Aksesoris", "Monitor", "Networking", "Powerbank", "Printer", "Storage ", "Televisi", " ", " " }));
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laptop", "Audio", "Aksesoris", "Monitor", "Networking", "Powerbank", "Printer", "Storage ", "Televisi" }));
 
         btnSave.setBackground(new java.awt.Color(0, 157, 215));
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/savee.png"))); // NOI18N
