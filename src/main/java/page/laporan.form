@@ -50,7 +50,9 @@
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="LaopranBarangBtn" min="-2" pref="153" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="BtnReset" min="-2" pref="84" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="BtnTampilkan" min="-2" pref="127" max="-2" attributes="0"/>
@@ -64,10 +66,11 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="BtnReset" max="32767" attributes="0"/>
                   <Component id="BtnTampilkan" pref="39" max="32767" attributes="0"/>
+                  <Component id="LaopranBarangBtn" alignment="0" max="32767" attributes="0"/>
+                  <Component id="BtnReset" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -124,7 +127,7 @@
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <EmptySpace pref="33" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -235,7 +238,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="66" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Filter Laporan Barang"/>
+            <Property name="text" type="java.lang.String" value="Filter Laporan Transaksi"/>
           </Properties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="FltrDariTanggal">
@@ -321,7 +324,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Hasil Laporan Barang"/>
+            <Property name="text" type="java.lang.String" value="Hasil Laporan Transaksi"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -350,6 +353,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnTampilkanActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="LaopranBarangBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Laporan Barang"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -35,9 +35,9 @@ public class headerPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         lblLocation = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        RoleTxt = new javax.swing.JLabel();
         TambahBtn = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        UsernameTxt = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -63,10 +63,10 @@ public class headerPanel extends javax.swing.JPanel {
         lblLocation.setText("DASHBOARD");
         add(lblLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 57, 228, 20));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("ADMIN");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 50, 20));
+        RoleTxt.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        RoleTxt.setForeground(new java.awt.Color(102, 102, 102));
+        RoleTxt.setText("ROLE");
+        add(RoleTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 50, 20));
 
         TambahBtn.setBackground(new java.awt.Color(0, 51, 255));
         TambahBtn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -75,9 +75,9 @@ public class headerPanel extends javax.swing.JPanel {
         TambahBtn.addActionListener(this::TambahBtnActionPerformed);
         add(TambahBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 175, 37));
 
-        jLabel4.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        jLabel4.setText("USER NAME");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, -1, -1));
+        UsernameTxt.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        UsernameTxt.setText("USER NAME");
+        add(UsernameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/account_circle.png"))); // NOI18N
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, -1, -1));
@@ -110,12 +110,12 @@ public class headerPanel extends javax.swing.JPanel {
         TambahBtn.setVisible(visible);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel RoleTxt;
     private javax.swing.JButton TambahBtn;
+    private javax.swing.JLabel UsernameTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lblLocation;
     // End of variables declaration//GEN-END:variables
