@@ -97,11 +97,40 @@ public class class_reStock extends Koneksi{
         }
     }
 
+    public int getCurrentStok(int idBarang) {
+        try {
+            String sql = "SELECT Qty FROM stok WHERE Id_Barang = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, idBarang);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return Integer.parseInt(rs.getString("Qty").trim());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public boolean simpanTransaksi(String noTransaksi, String namaBarang, int qty, String keterangan, String tanggal) {
         try {
+            // Validasi input
+            if (namaBarang == null || namaBarang.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Nama barang tidak boleh kosong!");
+                return false;
+            }
+            if (qty <= 0) {
+                JOptionPane.showMessageDialog(null, "Qty harus lebih dari 0!");
+                return false;
+            }
+            if (noTransaksi == null || noTransaksi.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No. Transaksi tidak boleh kosong!");
+                return false;
+            }
+
             int idBarang = getBarangIdByNama(namaBarang);
             if (idBarang == -1) {
-                JOptionPane.showMessageDialog(null, "Barang tidak ditemukan!");
+                JOptionPane.showMessageDialog(null, "Barang tidak ditemukan! Pastikan memilih barang dari daftar pencarian.");
                 return false;
             }
             int idUser = server.Session.getIdUser();

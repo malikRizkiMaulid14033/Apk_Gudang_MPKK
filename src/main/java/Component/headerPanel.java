@@ -66,21 +66,21 @@ public class headerPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("ADMIN");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 50, 20));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 20));
 
         TambahBtn.setBackground(new java.awt.Color(0, 51, 255));
         TambahBtn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         TambahBtn.setForeground(new java.awt.Color(255, 255, 255));
         TambahBtn.setText("+   Tambah Akun");
         TambahBtn.addActionListener(this::TambahBtnActionPerformed);
-        add(TambahBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 175, 37));
+        add(TambahBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 175, 37));
 
         jLabel4.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         jLabel4.setText("USER NAME");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/account_circle.png"))); // NOI18N
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 22, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void TambahBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TambahBtnActionPerformed
