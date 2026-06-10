@@ -9,6 +9,7 @@ package page;
  * @author HP
  */
 import Class.Class_Laporan_Barang;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class Laporan_Barang extends javax.swing.JPanel {
@@ -47,6 +48,7 @@ public class Laporan_Barang extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblBarang = new javax.swing.JTable();
+        btncetak = new javax.swing.JButton();
         Btnreset = new javax.swing.JButton();
         BtnTampilkan = new javax.swing.JButton();
         BtnLaporanTransaksi = new javax.swing.JButton();
@@ -138,6 +140,13 @@ public class Laporan_Barang extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(TblBarang);
 
+        btncetak.setText("Cetak Laporan");
+        btncetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncetakActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -147,15 +156,24 @@ public class Laporan_Barang extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(27, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btncetak)
+                        .addGap(93, 93, 93))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btncetak)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
@@ -255,6 +273,21 @@ public class Laporan_Barang extends javax.swing.JPanel {
         backend.tampilkanData(TblBarang, kategori, filter);
     }//GEN-LAST:event_BtnTampilkanActionPerformed
 
+    private void btncetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakActionPerformed
+        // TODO add your handling code here:
+        try {
+            boolean complete = TblBarang.print();
+            if (complete) {
+                JOptionPane.showMessageDialog(null, "Laporan berhasil dicetak!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Pencetakan dibatalkan.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Gagal mencetak: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btncetakActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnLaporanTransaksi;
@@ -263,6 +296,7 @@ public class Laporan_Barang extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> ComboFilterBerdasarkan;
     private javax.swing.JComboBox<String> ComboKategori;
     private javax.swing.JTable TblBarang;
+    private javax.swing.JButton btncetak;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

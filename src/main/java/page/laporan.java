@@ -8,6 +8,7 @@ import Class.Class_Laporan;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -113,6 +114,7 @@ Class_Laporan backendLaporan = new Class_Laporan();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblLaporan = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        btncetak = new javax.swing.JButton();
         BtnReset = new javax.swing.JButton();
         BtnTampilkan = new javax.swing.JButton();
         LaporanBarangBtn = new javax.swing.JButton();
@@ -131,27 +133,21 @@ Class_Laporan backendLaporan = new Class_Laporan();
 
         FilterKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Semua Kategori", " " }));
         FilterKategori.addActionListener(this::FilterKategoriActionPerformed);
-        jPanel1.add(FilterKategori);
 
         UrutBerdasarkan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tanggal Terbaru", "Nama Barang (A-Z)", "Nama Barang (Z-A)", "Tipe Transaksi", "Kategori" }));
         UrutBerdasarkan.addActionListener(this::UrutBerdasarkanActionPerformed);
-        jPanel1.add(UrutBerdasarkan);
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setText("Kategori");
-        jPanel1.add(jLabel2);
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setText("Dari Tanggal");
-        jPanel1.add(jLabel3);
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Sampai Tanggal");
-        jPanel1.add(jLabel4);
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setText("Urutkan Berdasarkan");
-        jPanel1.add(jLabel5);
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 102, 204));
@@ -232,46 +228,44 @@ Class_Laporan backendLaporan = new Class_Laporan();
         jLabel1.setForeground(new java.awt.Color(0, 51, 153));
         jLabel1.setText("Hasil Laporan Transaksi");
 
+        btncetak.setText("Cetak Laporan");
+        btncetak.addActionListener(this::btncetakActionPerformed);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(64, 64, 64)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btncetak)
+                .addGap(109, 109, 109))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(btncetak))
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        add(jPanel2);
-
         BtnReset.setText("RESET");
         BtnReset.addActionListener(this::BtnResetActionPerformed);
-        add(BtnReset);
 
         BtnTampilkan.setBackground(new java.awt.Color(0, 51, 255));
         BtnTampilkan.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         BtnTampilkan.setForeground(new java.awt.Color(255, 255, 255));
         BtnTampilkan.setText("Tampilkan");
         BtnTampilkan.addActionListener(this::BtnTampilkanActionPerformed);
-        add(BtnTampilkan);
 
         LaporanBarangBtn.setText("Laporan Barang");
         LaporanBarangBtn.addActionListener(this::LaporanBarangBtnActionPerformed);
@@ -372,6 +366,21 @@ Class_Laporan backendLaporan = new Class_Laporan();
         // TODO add your handling code here:
     }//GEN-LAST:event_LaporanBarangBtnActionPerformed
 
+    private void btncetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakActionPerformed
+        // TODO add your handling code here:
+        try {
+            boolean complete = TblLaporan.print();
+            if (complete) {
+                JOptionPane.showMessageDialog(null, "Laporan berhasil dicetak!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Pencetakan dibatalkan.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Gagal mencetak: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btncetakActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnReset;
@@ -382,6 +391,7 @@ Class_Laporan backendLaporan = new Class_Laporan();
     private javax.swing.JButton LaporanBarangBtn;
     private javax.swing.JTable TblLaporan;
     private javax.swing.JComboBox<String> UrutBerdasarkan;
+    private javax.swing.JButton btncetak;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
