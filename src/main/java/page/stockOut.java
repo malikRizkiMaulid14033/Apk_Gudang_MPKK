@@ -68,6 +68,8 @@ public class stockOut extends javax.swing.JPanel {
         btnCancel = new javax.swing.JButton();
         lblKode = new javax.swing.JLabel();
         tfQty = new javax.swing.JSpinner();
+        tfStokSistem = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -170,16 +172,20 @@ public class stockOut extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(174, 179, 187), 2, true));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 77, 153));
         jLabel5.setText("Input Barang");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 19, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
         jLabel6.setText("Nama Barang");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 55, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
         jLabel7.setText("Qty Keluar");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 55, -1, -1));
 
         tabelPencarian.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -207,6 +213,8 @@ public class stockOut extends javax.swing.JPanel {
             }
         });
         scrollPanePencarian.setViewportView(tabelPencarian);
+
+        jPanel2.add(scrollPanePencarian, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 133, 239, 88));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(174, 179, 187), 1, true));
@@ -247,71 +255,29 @@ public class stockOut extends javax.swing.JPanel {
                     .addComponent(tfNamaBarang, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 88, -1, -1));
+
         btnCancel.setBackground(new java.awt.Color(255, 0, 0));
         btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setText("X");
         btnCancel.addActionListener(this::btnCancelActionPerformed);
+        jPanel2.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, -1, -1));
 
         lblKode.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
         lblKode.setForeground(new java.awt.Color(102, 102, 102));
         lblKode.setText("Kode : ");
+        jPanel2.add(lblKode, new org.netbeans.lib.awtextra.AbsoluteConstraints(581, 8, -1, -1));
 
         tfQty.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(174, 179, 187), 1, true));
         tfQty.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel2.add(tfQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 88, 177, 39));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblKode)
-                        .addGap(26, 26, 26))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scrollPanePencarian, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCancel))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(tfQty, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(166, Short.MAX_VALUE))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblKode))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel5)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnCancel)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfQty, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollPanePencarian, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
+        tfStokSistem.setEditable(false);
+        jPanel2.add(tfStokSistem, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 171, 160, 34));
+
+        jLabel8.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
+        jLabel8.setText("Stok Sistem");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 144, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(0, 77, 153));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -337,10 +303,10 @@ public class stockOut extends javax.swing.JPanel {
                 .addGap(27, 27, 27)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -376,8 +342,15 @@ public class stockOut extends javax.swing.JPanel {
         int baris = tabelPencarian.getSelectedRow();
         if (baris != -1) {
             lblKode.setVisible(true);
-            tfNamaBarang.setText(tabelPencarian.getValueAt(baris, 0).toString());
-            rs.setKode(tfNamaBarang.getText(), lblKode);
+            String namaBarang = tabelPencarian.getValueAt(baris, 0).toString();
+            tfNamaBarang.setText(namaBarang);
+            rs.setKode(namaBarang, lblKode);
+            
+            int idBarang = rs.getBarangIdByNama(namaBarang);
+            if (idBarang != -1) {
+                int systemStock = rs.getStokSistem(idBarang);
+                tfStokSistem.setText(String.valueOf(systemStock));
+            }
         }
     }//GEN-LAST:event_tabelPencarianMousePressed
 
@@ -420,14 +393,27 @@ public class stockOut extends javax.swing.JPanel {
     }
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {
-        String noTransaksi = tfNoTransaksi.getText();
-        String namaBarang = tfNamaBarang.getText();
+        String noTransaksi = tfNoTransaksi.getText().trim();
+        String namaBarang = tfNamaBarang.getText().trim();
         int qty = ((Number) tfQty.getValue()).intValue();
-        String keterangan = tfKeterangan.getText();
-        String tanggal = tfTanggalMasuk.getText();
+        String keterangan = tfKeterangan.getText().trim();
+        String tanggal = tfTanggalMasuk.getText().trim();
 
-        if (namaBarang.isEmpty() || namaBarang.equals("  Nama Barang") || qty <= 0) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Nama barang dan Qty harus valid!");
+        // Validasi nama barang
+        if (namaBarang.isEmpty() || namaBarang.equals("Nama Barang")) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Pilih nama barang dari daftar pencarian!", "Validasi Gagal", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Validasi qty
+        if (qty <= 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Qty keluar harus lebih dari 0!", "Validasi Gagal", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Validasi no transaksi
+        if (noTransaksi.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No. Transaksi tidak boleh kosong!", "Validasi Gagal", javax.swing.JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -454,6 +440,7 @@ public class stockOut extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -464,6 +451,7 @@ public class stockOut extends javax.swing.JPanel {
     private javax.swing.JTextField tfNamaBarang;
     private javax.swing.JTextField tfNoTransaksi;
     private javax.swing.JSpinner tfQty;
+    private javax.swing.JTextField tfStokSistem;
     private javax.swing.JTextField tfTanggalMasuk;
     // End of variables declaration//GEN-END:variables
 }

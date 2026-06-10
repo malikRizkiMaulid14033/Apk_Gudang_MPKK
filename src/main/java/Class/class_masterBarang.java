@@ -147,16 +147,27 @@ public class class_masterBarang extends Koneksi {
     public void simpanData(String kode, String nama, String kategori, int hargaBeli, int hargaJual, int stokAwal) {
         try {
             String sql = "INSERT INTO master_barang (kode_barang, nama_barang, kategori, harga_beli, harga_jual, stok_awal, id_user) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, kode);
             ps.setString(2, nama);
             ps.setString(3, kategori);
             ps.setInt(4, hargaBeli);
             ps.setInt(5, hargaJual);
             ps.setInt(6, stokAwal);
-            ps.setInt(7, server.Session.getIdUser()); // Inject session ID here
+            ps.setInt(7, server.Session.getIdUser());
 
             ps.executeUpdate();
+
+            // Simpan stok_awal ke tabel stok
+            ResultSet generatedKeys = ps.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                int newId = generatedKeys.getInt(1);
+                String sqlStok = "INSERT INTO stok (Id_Barang, Qty) VALUES (?, ?)";
+                PreparedStatement psStok = conn.prepareStatement(sqlStok);
+                psStok.setInt(1, newId);
+                psStok.setString(2, String.valueOf(stokAwal));
+                psStok.executeUpdate();
+            }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error Simpan: " + e.getMessage());
@@ -165,6 +176,17 @@ public class class_masterBarang extends Koneksi {
 
     public void ubahData(int selectedId, String nama, String kategori, int hargaBeli, int hargaJual, int stokAwal) {
         try {
+            // 1. Ambil stok_awal lama
+            int stokAwalLama = 0;
+            String sqlOld = "SELECT stok_awal FROM master_barang WHERE id_barang = ?";
+            PreparedStatement psOld = conn.prepareStatement(sqlOld);
+            psOld.setInt(1, selectedId);
+            ResultSet rsOld = psOld.executeQuery();
+            if (rsOld.next()) {
+                stokAwalLama = rsOld.getInt("stok_awal");
+            }
+
+            // 2. Update master_barang
             String sql = "UPDATE master_barang SET nama_barang = ?, kategori = ?, harga_beli = ?, harga_jual = ?, stok_awal = ? WHERE id_barang = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, nama);
@@ -173,8 +195,33 @@ public class class_masterBarang extends Koneksi {
             ps.setInt(4, hargaJual);
             ps.setInt(5, stokAwal);
             ps.setInt(6, selectedId);
-
             ps.executeUpdate();
+
+            // 3. Update stok berdasarkan selisih stok_awal
+            int selisih = stokAwal - stokAwalLama;
+            if (selisih != 0) {
+                String sqlCheckStok = "SELECT Qty FROM stok WHERE Id_Barang = ?";
+                PreparedStatement psCheck = conn.prepareStatement(sqlCheckStok);
+                psCheck.setInt(1, selectedId);
+                ResultSet rsCheck = psCheck.executeQuery();
+                if (rsCheck.next()) {
+                    int currentQty = Integer.parseInt(rsCheck.getString("Qty").trim());
+                    int newQty = currentQty + selisih;
+                    if (newQty < 0) newQty = 0;
+                    String sqlUpdateStok = "UPDATE stok SET Qty = ? WHERE Id_Barang = ?";
+                    PreparedStatement psUpdateStok = conn.prepareStatement(sqlUpdateStok);
+                    psUpdateStok.setString(1, String.valueOf(newQty));
+                    psUpdateStok.setInt(2, selectedId);
+                    psUpdateStok.executeUpdate();
+                } else {
+                    // Belum ada record stok, buat baru
+                    String sqlInsertStok = "INSERT INTO stok (Id_Barang, Qty) VALUES (?, ?)";
+                    PreparedStatement psInsert = conn.prepareStatement(sqlInsertStok);
+                    psInsert.setInt(1, selectedId);
+                    psInsert.setString(2, String.valueOf(stokAwal));
+                    psInsert.executeUpdate();
+                }
+            }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error Update: " + e.getMessage());
@@ -183,13 +230,19 @@ public class class_masterBarang extends Koneksi {
 
     public void hapusData(int id) {
         try {
+            // Hapus record stok terlebih dahulu
+            String sqlStok = "DELETE FROM stok WHERE Id_Barang = ?";
+            PreparedStatement psStok = conn.prepareStatement(sqlStok);
+            psStok.setInt(1, id);
+            psStok.executeUpdate();
+
+            // Hapus master barang
             String sql = "DELETE FROM master_barang WHERE id_barang = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error Delete: " + e.getMessage());
-
         }
     }
 }

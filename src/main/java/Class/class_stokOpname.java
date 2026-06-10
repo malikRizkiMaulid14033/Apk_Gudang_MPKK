@@ -14,14 +14,6 @@ public class class_stokOpname extends class_reStock {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return Integer.parseInt(rs.getString("Qty").trim());
-            } else {
-                String sqlM = "SELECT stok_awal FROM master_barang WHERE id_barang = ?";
-                PreparedStatement psM = conn.prepareStatement(sqlM);
-                psM.setInt(1, idBarang);
-                ResultSet rsM = psM.executeQuery();
-                if (rsM.next()) {
-                    return rsM.getInt("stok_awal");
-                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,15 +48,43 @@ public class class_stokOpname extends class_reStock {
     @Override
     public boolean simpanTransaksi(String noTransaksi, String namaBarang, int stokDiGudang, String keterangan, String tanggal) {
         try {
+            // Validasi input
+            if (namaBarang == null || namaBarang.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Nama barang tidak boleh kosong!");
+                return false;
+            }
+            if (stokDiGudang < 0) {
+                JOptionPane.showMessageDialog(null, "Stok di gudang tidak boleh negatif!");
+                return false;
+            }
+
             int idBarang = getBarangIdByNama(namaBarang);
             if (idBarang == -1) {
-                JOptionPane.showMessageDialog(null, "Barang tidak ditemukan!");
+                JOptionPane.showMessageDialog(null, "Barang tidak ditemukan! Pastikan memilih barang dari daftar pencarian.");
                 return false;
             }
             int idUser = server.Session.getIdUser();
             int stokSistem = getStokSistem(idBarang);
             int selisih = stokDiGudang - stokSistem;
             int barangHilang = (selisih < 0) ? Math.abs(selisih) : 0;
+
+            // Konfirmasi jika ada selisih
+            if (selisih != 0) {
+                String pesan = "Stok Sistem: " + stokSistem + "\n"
+                             + "Stok di Gudang: " + stokDiGudang + "\n"
+                             + "Selisih: " + selisih + "\n";
+                if (selisih < 0) {
+                    pesan += "Barang Hilang: " + barangHilang + "\n";
+                } else {
+                    pesan += "Barang Lebih: " + selisih + "\n";
+                }
+                pesan += "\nStok akan diperbarui ke: " + stokDiGudang + "\nLanjutkan?";
+
+                int confirm = JOptionPane.showConfirmDialog(null, pesan, "Konfirmasi Stok Opname", JOptionPane.YES_NO_OPTION);
+                if (confirm != JOptionPane.YES_OPTION) {
+                    return false;
+                }
+            }
             
             String sql = "INSERT INTO stock_opname (id_barang, id_user, barang_Hilang, keterangan, stok_di_gudang, selisih, tanggal, no_transaksi) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql);

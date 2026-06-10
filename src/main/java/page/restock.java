@@ -416,14 +416,27 @@ public class restock extends javax.swing.JPanel {
     }
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {
-        String noTransaksi = tfNoTransaksi.getText();
-        String namaBarang = tfNamaBarang.getText();
+        String noTransaksi = tfNoTransaksi.getText().trim();
+        String namaBarang = tfNamaBarang.getText().trim();
         int qty = ((Number) tfQty.getValue()).intValue();
-        String keterangan = tfKeterangan.getText();
-        String tanggal = tfTanggalMasuk.getText();
+        String keterangan = tfKeterangan.getText().trim();
+        String tanggal = tfTanggalMasuk.getText().trim();
 
-        if (namaBarang.isEmpty() || namaBarang.equals("  Nama Barang") || qty <= 0) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Nama barang dan Qty harus valid!");
+        // Validasi nama barang
+        if (namaBarang.isEmpty() || namaBarang.equals("Nama Barang")) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Pilih nama barang dari daftar pencarian!", "Validasi Gagal", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Validasi qty
+        if (qty <= 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Qty masuk harus lebih dari 0!", "Validasi Gagal", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Validasi no transaksi
+        if (noTransaksi.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No. Transaksi tidak boleh kosong!", "Validasi Gagal", javax.swing.JOptionPane.WARNING_MESSAGE);
             return;
         }
 
