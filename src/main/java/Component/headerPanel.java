@@ -22,6 +22,23 @@ public class headerPanel extends javax.swing.JPanel {
         lblLocation.setText(title);
     }
 
+    /** Tampilkan username dan role di header setelah login */
+    public void setUserInfo(String username, String role) {
+        UsernameTxt.setText(username);
+
+        // Warna badge role
+        java.awt.Color roleColor;
+        switch (role.toLowerCase()) {
+            case "admin": roleColor = new java.awt.Color(0, 77, 153);   break; // biru
+            case "staff": roleColor = new java.awt.Color(0, 140, 70);   break; // hijau
+            case "boss":  roleColor = new java.awt.Color(120, 40, 160); break; // ungu
+            default:      roleColor = new java.awt.Color(100, 100, 100); break;
+        }
+        RoleTxt.setText(role.toUpperCase());
+        RoleTxt.setForeground(roleColor);
+        RoleTxt.setFont(new java.awt.Font("Inter", java.awt.Font.BOLD, 11));
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

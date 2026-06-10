@@ -4,17 +4,28 @@
  */
 package page;
 
+import Class.Class_Dashboard;
+import java.sql.ResultSet;
+import java.text.NumberFormat;
+import java.util.Locale;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author HP
  */
 public class dashboard extends javax.swing.JPanel {
 
+    private Class_Dashboard db;
+
     /**
      * Creates new form Dashboard
      */
     public dashboard() {
         initComponents();
+        db = new Class_Dashboard();
+        setupFilter();
+        loadData();
     }
 
     /**
@@ -170,7 +181,7 @@ public class dashboard extends javax.swing.JPanel {
 
         jLabel8.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel8.setText("TERJUAL");
+        jLabel8.setText("RESTOCK");
         jPanel5.add(jLabel8);
         jLabel8.setBounds(20, 30, 57, 15);
 
@@ -314,4 +325,98 @@ public class dashboard extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    // -------------------------------------------------------------------------
+    // Custom Methods
+    // -------------------------------------------------------------------------
+
+    /** Isi ComboBox filter dan pasang listener */
+    private void setupFilter() {
+        cmbFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{
+            "Semua", "Masuk", "Keluar", "Opname"
+        }));
+        cmbFilter.addActionListener(e -> {
+            String selected = (String) cmbFilter.getSelectedItem();
+            loadTable(selected);
+        });
+    }
+
+    /** Muat semua angka statistik dan tabel */
+    public void loadData() {
+        NumberFormat nf = NumberFormat.getNumberInstance(new Locale("id", "ID"));
+
+        // Total Barang
+        int totalStok = db.getTotalStok();
+        jLabel2.setText(nf.format(totalStok));
+
+        // Terjual Hari Ini  (jPanel3 → jLabel5)
+        int terjual = db.getTerjualHariIni();
+        jLabel5.setText(nf.format(terjual));
+
+        // ReStock Hari Ini  (jPanel5 → jLabel9)
+        int restock = db.getRestokHariIni();
+        jLabel9.setText(nf.format(restock));
+
+        // Tabel transaksi terbaru
+        loadTable("Semua");
+    }
+
+    /** Muat 5 transaksi terbaru ke jTable1, dengan filter tipe */
+    private void loadTable(String filterTipe) {
+        DefaultTableModel model = new DefaultTableModel(
+            new String[]{"Tanggal", "Nama Barang", "Tipe Transaksi", "Jumlah"}, 0
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) { return false; }
+        };
+
+        try {
+            ResultSet rs = db.getTransaksiTerbaru(filterTipe);
+            if (rs != null) {
+                while (rs.next()) {
+                    String tanggal    = rs.getString("tanggal");
+                    String namaBarang = rs.getString("nama_barang");
+                    String tipe       = rs.getString("tipe_transaksi");
+                    int    jumlah     = rs.getInt("jumlah");
+                    model.addRow(new Object[]{tanggal, namaBarang, tipe, jumlah});
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        jTable1.setModel(model);
+
+        // Styling header tabel
+        jTable1.getTableHeader().setFont(new java.awt.Font("Inter", java.awt.Font.BOLD, 12));
+        jTable1.setRowHeight(28);
+        jTable1.setFont(new java.awt.Font("Inter", java.awt.Font.PLAIN, 12));
+        jTable1.setShowGrid(false);
+        jTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
+
+        // Warna baris bergantian
+        jTable1.setDefaultRenderer(Object.class, new javax.swing.table.DefaultTableCellRenderer() {
+            @Override
+            public java.awt.Component getTableCellRendererComponent(
+                    javax.swing.JTable table, Object value,
+                    boolean isSelected, boolean hasFocus, int row, int column) {
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                if (!isSelected) {
+                    setBackground(row % 2 == 0
+                        ? new java.awt.Color(245, 245, 255)
+                        : java.awt.Color.WHITE);
+                    setForeground(java.awt.Color.DARK_GRAY);
+                }
+                // Warna badge tipe transaksi
+                if (column == 2 && value != null) {
+                    String tipe = value.toString();
+                    if (tipe.equals("Masuk"))  setForeground(new java.awt.Color(0, 153, 0));
+                    else if (tipe.equals("Keluar")) setForeground(new java.awt.Color(204, 0, 0));
+                    else if (tipe.equals("Opname")) setForeground(new java.awt.Color(0, 102, 204));
+                }
+                setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 8, 0, 8));
+                return this;
+            }
+        });
+    }
 }

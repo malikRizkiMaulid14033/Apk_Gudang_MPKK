@@ -29,9 +29,10 @@ public class Class_login extends Koneksi {
             ResultSet rs = pstat.executeQuery();
             
             if (rs.next()) {
-                // Simpan Session ke class global
+                // Simpan data session
                 server.Session.setIdUser(rs.getInt("id_user"));
-                server.Session.setNamaUser(rs.getString("nama_user"));
+                server.Session.setUsername(rs.getString("nama_user"));
+                server.Session.setRole(rs.getString("role"));
                 return true; 
             }
         } catch (Exception e) {

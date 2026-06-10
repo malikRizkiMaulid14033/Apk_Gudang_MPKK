@@ -44,13 +44,82 @@ public class sidebarPanel extends javax.swing.JPanel {
         menuLaporan = new menuItem(panelLaporan, lblLaporan, jLabel7, "/images/navUnactive/analytics.png", "/images/navActive/analytics.png");
         menuManajemenAkun = new menuItem(panelManajemen, labelManajemen, jLabel12, "/images/navUnactive/manage_accounts.png", "/images/navActive/manage_accounts.png");
         menuLogOut = new menuItem(panelLogOut, labelLogOut, jLabel4, "/images/navActive/logOut.png", "/images/navActive/logOut.png");
-        
 
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan, menuManajemenAkun, menuLogOut);
         menuDashboard.setActive();
         panelDashboard.repaint();
+
+        // Terapkan privilege sesuai role
+        applyPrivilege();
     }
 
+    /**
+     * Sembunyikan/tampilkan menu berdasarkan role: - admin : semua menu tampil
+     * - staff : tidak bisa akses masterBarang & manajemenAkun - boss : hanya
+     * bisa akses laporan (+ dashboard & logout)
+     */
+    private void applyPrivilege() {
+        String role = server.Session.getRole().toLowerCase();
+        switch (role) {
+            case "admin":
+                // Semua menu tampil
+                setMenuVisible(true, true, true, true, true, true, true);
+                break;
+
+            case "staff":
+                // Tidak bisa masterBarang & manajemenAkun
+                setMenuVisible(
+                        /* dashboard */true,
+                        /* masterBarang */ false,
+                        /* restock */ true,
+                        /* stockOut */ true,
+                        /* opname */ true,
+                        /* laporan */ true,
+                        /* manajemenAkun */ false
+                );
+                // Redirect default ke dashboard (sudah ada)
+                break;
+
+            case "bos":
+            case "boss":
+                // Hanya laporan
+                setMenuVisible(
+                        /* dashboard */false,
+                        /* masterBarang */ false,
+                        /* restock */ false,
+                        /* stockOut */ false,
+                        /* opname */ false,
+                        /* laporan */ true,
+                        /* manajemenAkun */ false
+                );
+                // Langsung aktifkan visual laporan sebagai default
+                menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan, menuManajemenAkun, menuLogOut);
+                menuLaporan.setActive();
+                break;
+
+            default:
+                // Role tidak dikenal → akses minimal (hanya logout)
+                setMenuVisible(false, false, false, false, false, false, false);
+                break;
+        }
+    }
+
+    /**
+     * Helper untuk set visibility semua panel menu sekaligus
+     */
+    private void setMenuVisible(boolean dashboard, boolean masterBarang,
+            boolean restock, boolean stockOut,
+            boolean opname, boolean laporan, boolean manajemenAkun) {
+        panelDashboard.setVisible(dashboard);
+        panelMasterBarang.setVisible(masterBarang);
+        panelMasuk.setVisible(restock);
+        panelKeluar.setVisible(stockOut);
+        panelOpname.setVisible(opname);
+        panelLaporan.setVisible(laporan);
+        panelManajemen.setVisible(manajemenAkun);
+        // panelLogOut selalu tampil untuk semua role
+        panelLogOut.setVisible(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -338,7 +407,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
     private void panelMasterBarangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMasterBarangMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan, menuManajemenAkun, menuLogOut);
 
         menumasterBarang.setActive();
         main.showPage("masterBarang", "MASTER BARANG");
@@ -348,7 +417,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
     private void panelLaporanMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelLaporanMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan, menuManajemenAkun, menuLogOut);
 
         menuLaporan.setActive();
         main.showPage("laporan", "LAPORAN");
@@ -357,7 +426,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
     private void panelDashboardMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelDashboardMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan, menuManajemenAkun, menuLogOut);
 
         menuDashboard.setActive();
         main.showPage("dashboard", "DASHBOARD");
@@ -368,7 +437,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
     private void panelMasukMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMasukMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan, menuManajemenAkun, menuLogOut);
 
         menuRestock.setActive();
         main.showPage("reStock", "RE-STOCK");
@@ -377,7 +446,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
     private void panelKeluarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelKeluarMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan, menuManajemenAkun, menuLogOut);
 
         menuStockOut.setActive();
         main.showPage("stockOut", "STOCK OUT");
@@ -386,7 +455,7 @@ public class sidebarPanel extends javax.swing.JPanel {
 
     private void panelOpnameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelOpnameMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan, menuManajemenAkun, menuLogOut);
 
         menustockOpname.setActive();
         main.showPage("stokOpname", "STOK OPNAME");
@@ -395,24 +464,24 @@ public class sidebarPanel extends javax.swing.JPanel {
 
     private void panelLogOutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelLogOutMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan, menuManajemenAkun, menuLogOut);
         int confirm = JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin logout?", "Konfirmasi Logout", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             Session.clearSession();
 //            this.dispose
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
             frame.dispose();
-            
+
             Login loginForm = new Login();
             loginForm.setLocationRelativeTo(null);
             loginForm.setVisible(true);
         }
-        
+
     }//GEN-LAST:event_panelLogOutMousePressed
 
     private void panelManajemenMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelManajemenMousePressed
         // TODO add your handling code here:
-        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan,menuManajemenAkun,menuLogOut);
+        menuItem.resetMenu(menumasterBarang, menuDashboard, menuRestock, menuStockOut, menustockOpname, menuLaporan, menuManajemenAkun, menuLogOut);
         menuManajemenAkun.setActive();
         main.showPage("CrudAkun", "MANAJEMEN AKUN");
         panelManajemen.repaint();

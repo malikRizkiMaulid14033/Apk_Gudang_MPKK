@@ -44,6 +44,9 @@ public class mainFrame extends javax.swing.JFrame {
         header = new headerPanel();
         panelHeader.add(header, BorderLayout.CENTER);
 
+        // Tampilkan username & role dari session
+        header.setUserInfo(server.Session.getUsername(), server.Session.getRole());
+
         cardlayout = new CardLayout();
         panelContent.setLayout(cardlayout);
 
@@ -57,7 +60,12 @@ public class mainFrame extends javax.swing.JFrame {
         panelContent.add(new CrudAkun(), "CrudAkun");
 
         // DEFAULT PAGE
-        cardlayout.show(panelContent, "dashboard");
+        String role = server.Session.getRole().toLowerCase();
+        if ("bos".equals(role) || "boss".equals(role)) {
+            showPage("laporan", "LAPORAN");
+        } else {
+            showPage("dashboard", "DASHBOARD");
+        }
     }
 
     public void showPage(String pageName, String title) {
@@ -71,6 +79,10 @@ public class mainFrame extends javax.swing.JFrame {
             header.showAddAccountButton(false);
         }
 
+    }
+
+    public headerPanel getHeader() {
+        return header;
     }
 
     /**
