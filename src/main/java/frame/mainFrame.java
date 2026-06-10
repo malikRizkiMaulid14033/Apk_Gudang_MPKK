@@ -7,6 +7,7 @@ package frame;
 import Component.headerPanel;
 import Component.sidebarPanel;
 import page.laporan;
+import page.Laporan_Barang;
 import page.stockOut;
 import page.restock;
 import page.dashboard;
@@ -57,6 +58,7 @@ public class mainFrame extends javax.swing.JFrame {
         panelContent.add(new stockOut(), "stockOut");
         panelContent.add(new stokOpname(), "stokOpname");
         panelContent.add(new laporan(), "laporan");
+        panelContent.add(new Laporan_Barang(), "laporan_barang");
         panelContent.add(new CrudAkun(), "CrudAkun");
 
         // DEFAULT PAGE
