@@ -8,13 +8,23 @@ package page;
  *
  * @author HP
  */
+import Class.Class_Laporan_Barang;
+import javax.swing.SwingUtilities;
+
 public class Laporan_Barang extends javax.swing.JPanel {
+
+    Class_Laporan_Barang backend = new Class_Laporan_Barang();
 
     /**
      * Creates new form Laporan_Barang
      */
     public Laporan_Barang() {
         initComponents();
+        
+        // --- CUSTOM INIT ---
+        backend.loadKategori(ComboKategori);
+        backend.tampilkanData(TblBarang, "Semua Kategori", "Nama Barang A-Z");
+        // -------------------
     }
 
     /**
@@ -152,11 +162,21 @@ public class Laporan_Barang extends javax.swing.JPanel {
         );
 
         Btnreset.setText("RESET");
+        Btnreset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnresetActionPerformed(evt);
+            }
+        });
 
         BtnTampilkan.setBackground(new java.awt.Color(0, 51, 204));
         BtnTampilkan.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         BtnTampilkan.setForeground(new java.awt.Color(255, 255, 255));
         BtnTampilkan.setText("Tampilkan");
+        BtnTampilkan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTampilkanActionPerformed(evt);
+            }
+        });
 
         BtnLaporanTransaksi.setText("Laporan Transaksi");
         BtnLaporanTransaksi.addActionListener(new java.awt.event.ActionListener() {
@@ -217,8 +237,23 @@ public class Laporan_Barang extends javax.swing.JPanel {
     }//GEN-LAST:event_ComboKategoriActionPerformed
 
     private void BtnLaporanTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLaporanTransaksiActionPerformed
-        // TODO add your handling code here:
+        javax.swing.JFrame frame = (javax.swing.JFrame) SwingUtilities.getWindowAncestor(this);
+        if (frame instanceof frame.mainFrame) {
+            ((frame.mainFrame) frame).showPage("laporan", "LAPORAN");
+        }
     }//GEN-LAST:event_BtnLaporanTransaksiActionPerformed
+
+    private void BtnresetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnresetActionPerformed
+        ComboKategori.setSelectedItem("Semua Kategori");
+        ComboFilterBerdasarkan.setSelectedItem("Nama Barang A-Z");
+        backend.tampilkanData(TblBarang, "Semua Kategori", "Nama Barang A-Z");
+    }//GEN-LAST:event_BtnresetActionPerformed
+
+    private void BtnTampilkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTampilkanActionPerformed
+        String kategori = ComboKategori.getSelectedItem() != null ? ComboKategori.getSelectedItem().toString() : "Semua Kategori";
+        String filter = ComboFilterBerdasarkan.getSelectedItem() != null ? ComboFilterBerdasarkan.getSelectedItem().toString() : "Nama Barang A-Z";
+        backend.tampilkanData(TblBarang, kategori, filter);
+    }//GEN-LAST:event_BtnTampilkanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
