@@ -96,14 +96,14 @@ public class Class_Laporan_Barang extends Koneksi {
         try (
              PreparedStatement pst = conn.prepareStatement(sql.toString())) {
             
-            // Set parameter kategori jika difilter
+            
             if (filterAdaKategori) {
                 pst.setString(1, kategoriPilihan);
             }
             
             try (ResultSet rs = pst.executeQuery()) {
                 while (rs.next()) {
-                    // Update stok table if necessary (as per user request: "hasilnya nanti akan masuk ke tabel stok")
+                    
                     int idBarang = rs.getInt("id_barang");
                     int stokAkhir = rs.getInt("stok_akhir");
                     updateStokTable(idBarang, stokAkhir);
