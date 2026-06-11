@@ -42,7 +42,9 @@ public class Class_Laporan_Barang extends Koneksi {
         model.addColumn("Nama Barang");
         model.addColumn("Kategori");
         model.addColumn("Stok Awal");
-        model.addColumn("Stok Masuk");
+        model.addColumn("Restock");
+        model.addColumn("Stockout");
+        model.addColumn("Opname");
         model.addColumn("Stok Akhir");
         
         tabelLaporan.setModel(model);
@@ -94,14 +96,14 @@ public class Class_Laporan_Barang extends Koneksi {
         try (
              PreparedStatement pst = conn.prepareStatement(sql.toString())) {
             
-            // Set parameter kategori jika difilter
+            
             if (filterAdaKategori) {
                 pst.setString(1, kategoriPilihan);
             }
             
             try (ResultSet rs = pst.executeQuery()) {
                 while (rs.next()) {
-                    // Update stok table if necessary (as per user request: "hasilnya nanti akan masuk ke tabel stok")
+                    
                     int idBarang = rs.getInt("id_barang");
                     int stokAkhir = rs.getInt("stok_akhir");
                     updateStokTable(idBarang, stokAkhir);
@@ -111,8 +113,10 @@ public class Class_Laporan_Barang extends Koneksi {
                         rs.getString("nama_barang"),
                         rs.getString("kategori"),
                         rs.getInt("stok_awal"),
-                        rs.getInt("stok_masuk"),
-                        stokAkhir
+                        rs.getInt("stok_masuk"),         
+                        rs.getInt("stok_keluar"),       
+                        rs.getInt("selisih_opname"),    
+                        stokAkhir                       
                     });
                 }
             }
