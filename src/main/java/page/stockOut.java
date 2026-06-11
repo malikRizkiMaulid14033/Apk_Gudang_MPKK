@@ -36,6 +36,15 @@ public class stockOut extends javax.swing.JPanel {
                 btnSimpanActionPerformed(evt);
             }
         });
+
+        // Auto refresh saat halaman dibuka
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                tfNoTransaksi.setText(Helper.generateAutoKode("TO", "barang_keluar", "no_transaksi", "id_barang_keluar", rs.conn));
+                tfTanggalMasuk.setText(Helper.getSystemDate());
+            }
+        });
     }
 
 
@@ -185,7 +194,7 @@ public class stockOut extends javax.swing.JPanel {
 
         jLabel7.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
         jLabel7.setText("Qty Keluar");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 55, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
 
         tabelPencarian.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -261,7 +270,7 @@ public class stockOut extends javax.swing.JPanel {
         btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setText("X");
         btnCancel.addActionListener(this::btnCancelActionPerformed);
-        jPanel2.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, -1, -1));
+        jPanel2.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, -1, -1));
 
         lblKode.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
         lblKode.setForeground(new java.awt.Color(102, 102, 102));
@@ -270,14 +279,14 @@ public class stockOut extends javax.swing.JPanel {
 
         tfQty.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(174, 179, 187), 1, true));
         tfQty.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.add(tfQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 88, 177, 39));
+        jPanel2.add(tfQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 177, 39));
 
         tfStokSistem.setEditable(false);
-        jPanel2.add(tfStokSistem, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 171, 160, 34));
+        jPanel2.add(tfStokSistem, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, 160, 34));
 
         jLabel8.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
         jLabel8.setText("Stok Sistem");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 144, -1, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(0, 77, 153));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));

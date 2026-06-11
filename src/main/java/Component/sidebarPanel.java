@@ -81,10 +81,9 @@ public class sidebarPanel extends javax.swing.JPanel {
                 break;
 
             case "bos":
-            case "boss":
                 // Hanya laporan
                 setMenuVisible(
-                        /* dashboard */false,
+                        /* dashboard */true,
                         /* masterBarang */ false,
                         /* restock */ false,
                         /* stockOut */ false,

@@ -31,6 +31,15 @@ public class stokOpname extends javax.swing.JPanel {
                 btnSimpanActionPerformed(evt);
             }
         });
+
+        // Auto refresh saat halaman dibuka
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                tfNoTransaksi.setText(Helper.generateAutoKode("OP", "stock_opname", "no_transaksi", "id_stock_opname", rs.conn));
+                tfTanggalMasuk.setText(Helper.getSystemDate());
+            }
+        });
     }
 
 
@@ -68,6 +77,7 @@ public class stokOpname extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(174, 179, 187), 2, true));
@@ -165,6 +175,8 @@ public class stokOpname extends javax.swing.JPanel {
                         .addGap(37, 37, 37))))
         );
 
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 27, -1, -1));
+
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(174, 179, 187), 2, true));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -256,7 +268,7 @@ public class stokOpname extends javax.swing.JPanel {
         btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setText("X");
         btnCancel.addActionListener(this::btnCancelActionPerformed);
-        jPanel2.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, -1, -1));
+        jPanel2.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, -1, -1));
 
         lblKode.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
         lblKode.setForeground(new java.awt.Color(102, 102, 102));
@@ -268,41 +280,19 @@ public class stokOpname extends javax.swing.JPanel {
         jPanel2.add(tfQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 82, 159, 33));
 
         tfStokSistem.setEditable(false);
-        jPanel2.add(tfStokSistem, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 160, 160, 34));
+        jPanel2.add(tfStokSistem, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 160, 34));
 
         jLabel8.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
         jLabel8.setText("Stok Sistem");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 133, -1, -1));
 
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 201, -1, 246));
+
         jButton1.setBackground(new java.awt.Color(0, 77, 153));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/savee.png"))); // NOI18N
         jButton1.setText("SIMPAN TRANSAKSI");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton1)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
-        );
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 453, -1, 34));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfTanggalMasukMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfTanggalMasukMousePressed

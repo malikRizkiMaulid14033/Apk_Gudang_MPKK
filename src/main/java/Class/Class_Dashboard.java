@@ -86,10 +86,10 @@ public class Class_Dashboard extends Koneksi {
         try {
             StringBuilder sql = new StringBuilder(
                 "SELECT * FROM (" +
-                    "SELECT bm.tanggal, mb.nama_barang, 'Masuk' AS tipe_transaksi, bm.qty_Masuk AS jumlah " +
+                    "SELECT bm.tanggal, mb.nama_barang, 'Re-Stock' AS tipe_transaksi, bm.qty_Masuk AS jumlah " +
                     "FROM barang_masuk bm JOIN master_barang mb ON bm.id_barang = mb.id_barang " +
                     "UNION ALL " +
-                    "SELECT bk.tanggal, mb.nama_barang, 'Keluar' AS tipe_transaksi, bk.qty_Keluar AS jumlah " +
+                    "SELECT bk.tanggal, mb.nama_barang, 'Stock Out' AS tipe_transaksi, bk.qty_Keluar AS jumlah " +
                     "FROM barang_keluar bk JOIN master_barang mb ON bk.id_barang = mb.id_barang " +
                     "UNION ALL " +
                     "SELECT so.tanggal, mb.nama_barang, 'Opname' AS tipe_transaksi, so.stok_di_gudang AS jumlah " +

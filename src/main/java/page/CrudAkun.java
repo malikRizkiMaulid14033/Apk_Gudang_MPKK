@@ -35,6 +35,14 @@ public class CrudAkun extends javax.swing.JPanel {
                 cariakun(searchString);
             }
         });
+
+        // Auto refresh saat halaman dibuka
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                loadData();
+            }
+        });
     }
 
     private void cariakun(String str) {

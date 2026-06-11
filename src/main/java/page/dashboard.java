@@ -26,6 +26,16 @@ public class dashboard extends javax.swing.JPanel {
         db = new Class_Dashboard();
         setupFilter();
         loadData();
+
+        // Auto refresh saat halaman dibuka
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                loadData();
+                String selected = (String) cmbFilter.getSelectedItem();
+                if (selected != null) loadTable(selected);
+            }
+        });
     }
 
     /**
@@ -181,9 +191,9 @@ public class dashboard extends javax.swing.JPanel {
 
         jLabel8.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel8.setText("RESTOCK");
+        jLabel8.setText("Re-Stock");
         jPanel5.add(jLabel8);
-        jLabel8.setBounds(20, 30, 57, 15);
+        jLabel8.setBounds(20, 30, 80, 15);
 
         jLabel9.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 204, 0));
@@ -333,7 +343,7 @@ public class dashboard extends javax.swing.JPanel {
     /** Isi ComboBox filter dan pasang listener */
     private void setupFilter() {
         cmbFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{
-            "Semua", "Masuk", "Keluar", "Opname"
+            "Semua", "Stock Out", "Re-Stock", "Opname"
         }));
         cmbFilter.addActionListener(e -> {
             String selected = (String) cmbFilter.getSelectedItem();
@@ -410,8 +420,8 @@ public class dashboard extends javax.swing.JPanel {
                 // Warna badge tipe transaksi
                 if (column == 2 && value != null) {
                     String tipe = value.toString();
-                    if (tipe.equals("Masuk"))  setForeground(new java.awt.Color(0, 153, 0));
-                    else if (tipe.equals("Keluar")) setForeground(new java.awt.Color(204, 0, 0));
+                    if (tipe.equals("Re-Stock"))  setForeground(new java.awt.Color(0, 153, 0));
+                    else if (tipe.equals("Stock Out")) setForeground(new java.awt.Color(204, 0, 0));
                     else if (tipe.equals("Opname")) setForeground(new java.awt.Color(0, 102, 204));
                 }
                 setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 8, 0, 8));

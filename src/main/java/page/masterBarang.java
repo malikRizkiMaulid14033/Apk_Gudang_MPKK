@@ -39,6 +39,17 @@ public class masterBarang extends javax.swing.JPanel {
         tfCreatedAt.setText(Helper.getSystemDate());
         tfKodeBarang.setEditable(false);
         tfCreatedAt.setEditable(false);
+
+        // Auto refresh saat halaman dibuka
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                mb.tampilData();
+                mb.tampilKategori(cmbFilter);
+                tfKodeBarang.setText(Helper.generateAutoKode("BRG", "master_barang", "kode_barang", "id_barang", mb.conn));
+                tfCreatedAt.setText(Helper.getSystemDate());
+            }
+        });
     }
 
 
